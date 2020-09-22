@@ -9,8 +9,14 @@ def hello():
 
 @application.route('/execute')
 def execute():
-    os.system("python autogrow4-4.0.2{}RunAutogrow.py -j autogrow4-4.0.2{}sample_sub_scripts{}sample_submit_autogrow.json".format(os.sep, os.sep, os.sep))
-    return "Success?"
+    # py_file = "{}{}autogrow4-4.0.2{}RunAutogrow.py".format(os.getcwd(), os.sep, os.sep)
+    # params = "{}{}autogrow4-4.0.2{}sample_sub_scripts{}sample_submit_autogrow.json".format(os.getcwd(), os.sep, os.sep, os.sep)
+    py_file = "RunAutogrow.py"
+    params = "sample_sub_scripts{}sample_submit_autogrow.json".format(os.sep)
+    os.chdir("autogrow4-4.0.2")
+    command = "python {} -j {}".format(py_file, params)
+    os.system(command)
+    return "os.getcwd: {} \ncommand: {}".format(os.getcwd(), command)
 
 if __name__ == '__main__':
     application.debug = True
