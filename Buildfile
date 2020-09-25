@@ -1,0 +1,1 @@
+build: ./install_dependencies.sh
