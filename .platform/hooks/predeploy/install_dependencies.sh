@@ -1,7 +1,7 @@
 #!/bin/bash
-sudo apt install openbabel
+sudo yum install openbabel
 obabel_path=$(which openbabel)
-sudo apt-get install jq
+sudo yum install jq
 jsonStr=$(cat ./autogrow4-4.0.2/sample_submit_autogrow.json)
 jq 'del(.mgltools_directory)' <<<"$jsonStr"
 temp='. + { "obabel_path": "'
