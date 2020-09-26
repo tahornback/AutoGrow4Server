@@ -1,3 +1,4 @@
+#!/bin/bash
 sudo apt install openbabel
 obabel_path=$(which openbabel)
 sudo apt-get install jq
