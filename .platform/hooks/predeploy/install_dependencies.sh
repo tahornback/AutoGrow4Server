@@ -22,7 +22,6 @@ export PATH=~/miniconda3/bin:$PATH
 conda list
 if [ ! $? -eq 0 ];
 then
-    'alias conda="/conda/bin/conda"' >> ~/.bashrc
     source ~/.bashrc
 fi
 echo "ls root"
