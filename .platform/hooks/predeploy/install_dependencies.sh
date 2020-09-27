@@ -29,7 +29,11 @@ echo "bash_profile"
 cat ~/.bash_profile
 echo "exporting conda path"
 export PATH=~/anaconda3/bin:$PATH
-conda list&&conda install -c conda-forge rdkit&&conda install numpy&&conda install scipy
+/conda/bin/conda list
+conda list
+conda install -c conda-forge rdkit
+conda install numpy
+conda install scipy
 #mgltools_directory=$(which mgltools)
 #sudo yum install jq
 #jsonStr=$(cat ./autogrow4-4.0.2/sample_submit_autogrow.json)
