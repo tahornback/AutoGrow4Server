@@ -17,12 +17,15 @@ if [ ! -f "Miniconda3-latest-Linux-x86_64.sh" ]; then
     chmod +x "./Miniconda3-latest-Linux-x86_64.sh"
     ./Miniconda3-latest-Linux-x86_64.sh -b -p /conda
 fi
+echo "dir root"
 dir /
+echo "dir /conda"
 dir /conda
-conda list
-conda install -c conda-forge rdkit
-conda install numpy
-conda install scipy
+echo "bashrc"
+cat ~/.bashrc
+echo "bash_profile"
+cat ~/.bash_profile
+(conda list&&conda install -c conda-forge rdkit&&conda install numpy&&conda install scipy)
 #mgltools_directory=$(which mgltools)
 #sudo yum install jq
 #jsonStr=$(cat ./autogrow4-4.0.2/sample_submit_autogrow.json)
