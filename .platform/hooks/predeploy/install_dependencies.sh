@@ -34,7 +34,7 @@ cat ~/.bashrc
 echo "bash_profile"
 cat ~/.bash_profile
 echo "exporting conda path"
-export PATH=~/anaconda3/bin:$PATH
+export PATH=~/miniconda3/bin:$PATH
 conda list
 conda install -c conda-forge rdkit
 conda install numpy
