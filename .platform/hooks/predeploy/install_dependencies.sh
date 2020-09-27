@@ -2,17 +2,23 @@
 #sudo yum install -y epel-release
 #sudo yum install openbabel
 cd /
-wget http://mgltools.scripps.edu/downloads/downloads/tars/releases/REL1.5.6/mgltools_x86_64Linux2_1.5.6.tar.gz
-tar -xvzf mgltools_x86_64Linux2_1.5.6.tar.gz
-cd mgltools_x86_64Linux2_1.5.6
-./install.sh
-source ./initMGLtools.sh
+if [ ! -f "mgltools_x86_64Linux2_1.5.6.tar.gz" ]; then
+    echo "mgltools_x86_64Linux2_1.5.6.tar.gz does not exist."
+    wget http://mgltools.scripps.edu/downloads/downloads/tars/releases/REL1.5.6/mgltools_x86_64Linux2_1.5.6.tar.gz
+    tar -xvzf mgltools_x86_64Linux2_1.5.6.tar.gz
+    cd mgltools_x86_64Linux2_1.5.6
+    ./install.sh
+    source ./initMGLtools.sh
+fi
 cd /
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-chmod +x "./Miniconda3-latest-Linux-x86_64.sh"
-./Miniconda3-latest-Linux-x86_64.sh -b -p /conda
-cd conda
-dir
+if [ ! -f "Miniconda3-latest-Linux-x86_64.sh" ]; then
+    echo "Miniconda3-latest-Linux-x86_64.sh does not exist."
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    chmod +x "./Miniconda3-latest-Linux-x86_64.sh"
+    ./Miniconda3-latest-Linux-x86_64.sh -b -p /conda
+fi
+dir /
+dir /conda
 conda list
 conda install -c conda-forge rdkit
 conda install numpy
