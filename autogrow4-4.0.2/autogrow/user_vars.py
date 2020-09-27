@@ -478,8 +478,9 @@ def check_for_required_inputs(input_params):
 
     # Check mgltools_directory exists
     for folder in input_params["mgltools_directory"].split("/"):
-        os.chdir(folder)
-        os.system("dir")
+        if folder is not "":
+            os.chdir(folder)
+            os.system("dir")
     os.system("dir {}".format(input_params["mgltools_directory"]))
     if os.path.exists(input_params["mgltools_directory"]) is False:
         raise NotImplementedError("mgltools_directory does not exist")
