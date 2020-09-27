@@ -3,6 +3,7 @@
 #sudo yum install openbabel
 cd /
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+chmod +x "./Miniconda3-latest-Linux-x86_64.sh"
 ./Miniconda3-latest-Linux-x86_64.sh -b -p /
 cd /
 wget http://mgltools.scripps.edu/downloads/downloads/tars/releases/REL1.5.6/mgltools_x86_64Linux2_1.5.6.tar.gz
