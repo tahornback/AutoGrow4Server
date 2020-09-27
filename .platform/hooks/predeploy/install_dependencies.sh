@@ -17,6 +17,11 @@ if [ ! -f "Miniconda3-latest-Linux-x86_64.sh" ]; then
     chmod +x "./Miniconda3-latest-Linux-x86_64.sh"
     ./Miniconda3-latest-Linux-x86_64.sh -b -p /conda
 fi
+if [! $? -eq 0];
+then
+    'alias conda="/conda/bin/conda"' >> ~/.bashrc
+    source ~/.bashrc
+fi
 echo "ls root"
 ls /
 echo "ls /conda"
