@@ -1,6 +1,7 @@
 #!/bin/bash
 #sudo yum install -y epel-release
 #sudo yum install openbabel
+cd /
 wget http://mgltools.scripps.edu/downloads/downloads/tars/releases/REL1.5.6/mgltools_x86_64Linux2_1.5.6.tar.gz
 tar -xvzf mgltools_x86_64Linux2_1.5.6.tar.gz
 cd mgltools_x86_64Linux2_1.5.6
