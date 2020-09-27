@@ -17,6 +17,8 @@ if [ ! -f "Miniconda3-latest-Linux-x86_64.sh" ]; then
     chmod +x "./Miniconda3-latest-Linux-x86_64.sh"
     ./Miniconda3-latest-Linux-x86_64.sh -b -p /conda
 fi
+echo "exporting conda path"
+export PATH=~/miniconda3/bin:$PATH
 conda list
 if [ ! $? -eq 0 ];
 then
@@ -33,8 +35,6 @@ echo "bashrc"
 cat ~/.bashrc
 echo "bash_profile"
 cat ~/.bash_profile
-echo "exporting conda path"
-export PATH=~/miniconda3/bin:$PATH
 conda list
 conda install -c conda-forge rdkit
 conda install numpy
