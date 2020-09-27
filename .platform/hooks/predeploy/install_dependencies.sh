@@ -1,6 +1,6 @@
 #!/bin/bash
-sudo amazon-linux-extras install epel
-sudo amazon-linux-extras install openbabel
+sudo yum install -y epel-release
+sudo yum install openbabel
 #wget http://mgltools.scripps.edu/downloads/downloads/tars/releases/REL1.5.6/mgltools_x86_64Linux2_1.5.6.tar.gz
 #tar -xvzf mgltools_x86_64Linux2_1.5.6.tar.gz
 #cd mgltools_x86_64Linux2_1.5.6
