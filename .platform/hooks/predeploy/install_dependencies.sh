@@ -21,6 +21,8 @@ echo "ls root"
 ls /
 echo "ls /conda"
 ls /conda
+echo "ls /conda/bin"
+ls /conda/bin
 echo "bashrc"
 cat ~/.bashrc
 echo "bash_profile"
