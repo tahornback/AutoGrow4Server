@@ -961,6 +961,7 @@ def load_in_commandline_parameters(argv):
     if "json" in argv:
         json_vars = json.load(open(argv["json"]))
         json_vars = convert_json_params_from_unicode(json_vars)
+        print(json_vars)
         check_for_required_inputs(json_vars)
         vars, json_vars = check_value_types(vars, json_vars)
         for key in list(json_vars.keys()):
