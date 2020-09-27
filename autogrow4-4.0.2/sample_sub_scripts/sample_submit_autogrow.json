@@ -17,7 +17,7 @@
     "diversity_mols_to_seed_first_generation": 3,
     "diversity_seed_depreciation_per_gen": 0,
     "num_generations": 1,
-    "mgltools_directory": "~/mgltools_x86_64Linux2_1.5.6/",
+    "mgltools_directory": "/var/app/staging/mgltools_x86_64Linux2_1.5.6/",
     "number_of_processors": -1,
     "selector_choice": "Rank_Selector",
     "max_variants_per_compound": 1,
