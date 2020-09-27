@@ -17,13 +17,17 @@ if [ ! -f "Miniconda3-latest-Linux-x86_64.sh" ]; then
     chmod +x "./Miniconda3-latest-Linux-x86_64.sh"
     ./Miniconda3-latest-Linux-x86_64.sh -b -p /conda
 fi
-echo "exporting conda path"
-export PATH=~/miniconda3/bin:$PATH
+echo "conda before"
 conda list
 if [ ! $? -eq 0 ];
 then
+    echo "adding path to bashrc"
+    "export PATH=~/miniconda3/bin:$PATH" >> ~/.bashrc
+    echo "sourcing bashrc"
     source ~/.bashrc
 fi
+echo "conda after"
+conda list
 echo "ls root"
 ls /
 echo "ls /conda"
