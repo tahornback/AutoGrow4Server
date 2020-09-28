@@ -20,8 +20,9 @@ def execute():
     os.chdir("autogrow4-4.0.2")
     command = "/conda/bin/python {} -j {}".format(py_file, params)
     os.system("{} > {}".format(command, output_file))
-    os.system("tree Outputfolder > {}".format(tree_file))
-    os.chdir("..")
+    os.chdir("Outputfolder")
+    os.system("du -a > {}".format(tree_file))
+    os.chdir("../..")
     return "command: {}<br/>json file: {}<br/>output:<br/>{}<br/>tree:<br/>{}".format(
         command,
         open("autogrow4-4.0.2/" + params).read(),

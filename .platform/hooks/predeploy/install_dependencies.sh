@@ -1,7 +1,6 @@
 #!/bin/bash
 #sudo yum install -y epel-release
 #sudo yum install openbabel
-sudo yum install tree
 cd /
 if [ ! -f "mgltools_x86_64Linux2_1.5.6.tar.gz" ]; then
     echo "mgltools_x86_64Linux2_1.5.6.tar.gz does not exist."
