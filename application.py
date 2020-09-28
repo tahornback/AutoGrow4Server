@@ -14,7 +14,7 @@ def execute():
     py_file = "RunAutogrow.py"
     params = "./sample_sub_scripts{}sample_submit_autogrow.json".format(os.sep)
     os.chdir("autogrow4-4.0.2")
-    command = "python {} -j {}".format(py_file, params)
+    command = "/conda/bin/python {} -j {}".format(py_file, params)
     os.system(command)
     os.chdir("..")
     return "os.getcwd: {} \ncommand: {}\njson file: {}".format(os.getcwd(), command, open(params).read())
