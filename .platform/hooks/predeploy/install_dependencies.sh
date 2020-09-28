@@ -28,12 +28,12 @@ then
 fi
 echo "conda after"
 conda list
-echo "ls root"
-ls /
-echo "ls /conda"
-ls /conda
-echo "ls /conda/bin"
-ls /conda/bin
+#echo "ls root"
+#ls /
+#echo "ls /conda"
+#ls /conda
+#echo "ls /conda/bin"
+#ls /conda/bin
 echo "bashrc"
 cat ~/.bashrc
 echo "bash_profile"
