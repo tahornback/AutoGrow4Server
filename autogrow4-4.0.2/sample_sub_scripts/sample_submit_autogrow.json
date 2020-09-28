@@ -22,5 +22,6 @@
     "scoring_choice": "VINA",
     "dock_choice": "QuickVina2Docking",
     "debug_mode": true,
-    "No_Filters": true
+    "No_Filters": true,
+    "generate_plot": false
 }
