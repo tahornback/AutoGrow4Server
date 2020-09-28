@@ -13,11 +13,13 @@ def execute():
     # params = "{}{}autogrow4-4.0.2{}sample_sub_scripts{}sample_submit_autogrow.json".format(os.getcwd(), os.sep, os.sep, os.sep)
     py_file = "RunAutogrow.py"
     params = "./sample_sub_scripts{}sample_submit_autogrow.json".format(os.sep)
+    output_file = "current_run_output.txt"
     os.chdir("autogrow4-4.0.2")
     command = "/conda/bin/python {} -j {}".format(py_file, params)
-    os.system(command)
+    os.system("{} > {}".format(command, output_file))
     os.chdir("..")
-    return "os.getcwd: {} \ncommand: {}\njson file: {}".format(os.getcwd(), command, open(params).read())
+    return "os.getcwd: {}<br/>command: {}<br/>json file: {}<br/>output:<br/>{}"\
+        .format(os.getcwd(), command, open("autogrow4-4.0.2/" + params).read(), open("autogrow4-4.0.2/" + params).read())
 
 if __name__ == '__main__':
     application.debug = True
