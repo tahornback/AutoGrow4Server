@@ -19,7 +19,7 @@ def execute():
     os.system("{} > {}".format(command, output_file))
     os.chdir("..")
     return "os.getcwd: {}<br/>command: {}<br/>json file: {}<br/>output:<br/>{}"\
-        .format(os.getcwd(), command, open("autogrow4-4.0.2/" + params).read(), open("autogrow4-4.0.2/" + params).read())
+        .format(os.getcwd(), command, open("autogrow4-4.0.2/" + params).read(), open("autogrow4-4.0.2/" + output_file).read())
 
 if __name__ == '__main__':
     application.debug = True
