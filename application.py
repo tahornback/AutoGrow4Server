@@ -27,7 +27,7 @@ def execute():
         command,
         open("autogrow4-4.0.2/" + params).read(),
         open("autogrow4-4.0.2/" + output_file).read().replace(os.linesep, "<br/>"),
-        open("autogrow4-4.0.2/" + tree_file).read().replace(os.linesep, "<br/>"),
+        open("autogrow4-4.0.2/Outputfolder/" + tree_file).read().replace(os.linesep, "<br/>"),
     )
 
 
