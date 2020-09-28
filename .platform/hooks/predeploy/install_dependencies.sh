@@ -22,7 +22,8 @@ conda list
 if [ ! $? -eq 0 ];
 then
     echo "adding path to bashrc"
-    "export PATH=~/miniconda3/bin:$PATH" >> ~/.bashrc
+    export PATH=/conda/bin:$PATH
+    "export PATH=/conda/bin:$PATH" >> ~/.bashrc
     echo "sourcing bashrc"
     source ~/.bashrc
 fi
