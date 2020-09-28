@@ -23,11 +23,12 @@ def execute():
     os.chdir("Outputfolder")
     os.system("du -a > {}".format(tree_file))
     os.chdir("../..")
-    return "command: {}<br/>json file: {}<br/>output:<br/>{}<br/>tree:<br/>{}".format(
+    return "command: {}<br/>json file: {}<br/>output:<br/>{}<br/>tree:<br/>{}<br/>docking output:<br/>{}".format(
         command,
         open("autogrow4-4.0.2/" + params).read(),
         open("autogrow4-4.0.2/" + output_file).read().replace(os.linesep, "<br/>"),
         open("autogrow4-4.0.2/Outputfolder/" + tree_file).read().replace(os.linesep, "<br/>"),
+        open("autogrow4-4.0.2/Outputfolder/Run_0/generation_0/PDBs/naphthalene_22__1.pdbqt_docking_output.txt").read().replace(os.linesep, "<br/>"),
     )
 
 
