@@ -11,8 +11,6 @@ def hello():
 
 @application.route("/execute")
 def execute():
-    # py_file = "{}{}autogrow4-4.0.2{}RunAutogrow.py".format(os.getcwd(), os.sep, os.sep)
-    # params = "{}{}autogrow4-4.0.2{}sample_sub_scripts{}sample_submit_autogrow.json".format(os.getcwd(), os.sep, os.sep, os.sep)
     py_file = "RunAutogrow.py"
     params = "./sample_sub_scripts{}sample_submit_autogrow.json".format(os.sep)
     output_file = "current_run_output.txt"
@@ -27,8 +25,14 @@ def execute():
         command,
         open("autogrow4-4.0.2/" + params).read(),
         open("autogrow4-4.0.2/" + output_file).read().replace(os.linesep, "<br/>"),
-        open("autogrow4-4.0.2/Outputfolder/" + tree_file).read().replace(os.linesep, "<br/>"),
-        open("autogrow4-4.0.2/Outputfolder/Run_0/generation_0/PDBs/naphthalene_22__1.pdbqt_docking_output.txt").read().replace(os.linesep, "<br/>"),
+        open("autogrow4-4.0.2/Outputfolder/" + tree_file)
+        .read()
+        .replace(os.linesep, "<br/>"),
+        open(
+            "autogrow4-4.0.2/Outputfolder/Run_0/generation_0/PDBs/naphthalene_22__1.pdbqt_docking_output.txt"
+        )
+        .read()
+        .replace(os.linesep, "<br/>"),
     )
 
 

@@ -1,6 +1,4 @@
 #!/bin/bash
-#sudo yum install -y epel-release
-#sudo yum install openbabel
 cd /
 if [ ! -f "mgltools_x86_64Linux2_1.5.6.tar.gz" ]; then
     echo "mgltools_x86_64Linux2_1.5.6.tar.gz does not exist."
@@ -17,7 +15,6 @@ if [ ! -f "Miniconda3-latest-Linux-x86_64.sh" ]; then
     chmod +x "./Miniconda3-latest-Linux-x86_64.sh"
     ./Miniconda3-latest-Linux-x86_64.sh -b -p /conda
 fi
-echo "conda before"
 conda list
 if [ ! $? -eq 0 ];
 then
@@ -28,32 +25,10 @@ then
     echo "alias conda=/conda/bin/conda" >> /root/.bashrc
     echo "alias pip=/conda/bin/pip" >> /root/.bashrc
     echo "sourcing bashrc"
-    source ~/.bashrc
+    source /root/.bashrc
 fi
-echo "conda after"
-conda list
-#echo "ls root"
-#ls /
-#echo "ls /conda"
-#ls /conda
-#echo "ls /conda/bin"
-#ls /conda/bin
-echo "bashrc"
-cat ~/.bashrc
-echo "bash_profile"
-cat ~/.bash_profile
-conda list
 conda install -c conda-forge rdkit
 conda install numpy
 conda install scipy
 /conda/bin/pip install matplotlib==3.2.1
 /conda/bin/pip install func_timeout==4.3.5
-conda list
-#mgltools_directory=$(which mgltools)
-#sudo yum install jq
-#jsonStr=$(cat ./autogrow4-4.0.2/sample_submit_autogrow.json)
-#jq 'del(.mgltools_directory)' <<<"$jsonStr"
-#temp='. + { "mgltools_directory": "'
-#temp+=mgltools_directory
-#temp+='" }'
-#jq temp <<<"$jsonStr" > tmp.$$.json && mv tmp.$$.json ./autogrow4-4.0.2/sample_submit_autogrow.json
