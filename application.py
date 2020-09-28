@@ -1,13 +1,15 @@
 from flask import Flask
 import os
+
 application = Flask(__name__)
 
 
-@application.route('/')
+@application.route("/")
 def hello():
     return "Hello World!"
 
-@application.route('/execute')
+
+@application.route("/execute")
 def execute():
     # py_file = "{}{}autogrow4-4.0.2{}RunAutogrow.py".format(os.getcwd(), os.sep, os.sep)
     # params = "{}{}autogrow4-4.0.2{}sample_sub_scripts{}sample_submit_autogrow.json".format(os.getcwd(), os.sep, os.sep, os.sep)
@@ -18,9 +20,14 @@ def execute():
     command = "/conda/bin/python {} -j {}".format(py_file, params)
     os.system("{} > {}".format(command, output_file))
     os.chdir("..")
-    return "os.getcwd: {}<br/>command: {}<br/>json file: {}<br/>output:<br/>{}"\
-        .format(os.getcwd(), command, open("autogrow4-4.0.2/" + params).read(), open("autogrow4-4.0.2/" + output_file).read())
+    return "os.getcwd: {}<br/>command: {}<br/>json file: {}<br/>output:<br/>{}".format(
+        os.getcwd(),
+        command,
+        open("autogrow4-4.0.2/" + params).read(),
+        open("autogrow4-4.0.2/" + output_file).read().replace(os.linesep, "<br/>"),
+    )
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     application.debug = True
     application.run()
