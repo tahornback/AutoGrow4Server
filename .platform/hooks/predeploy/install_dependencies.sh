@@ -49,6 +49,7 @@ conda install scipy
 /conda/bin/pip install matplotlib==3.2.1
 /conda/bin/pip install func_timeout==4.3.5
 conda list
+sudo chmod +x -R /var/app/current
 #mgltools_directory=$(which mgltools)
 #sudo yum install jq
 #jsonStr=$(cat ./autogrow4-4.0.2/sample_submit_autogrow.json)
