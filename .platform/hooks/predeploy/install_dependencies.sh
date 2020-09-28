@@ -19,7 +19,7 @@ fi
 ./Miniconda3-latest-Linux-x86_64.sh -b
 echo "conda before"
 conda list
-if [ ! 1 -eq 0 ];
+if [ ! $? -eq 0 ];
 then
     echo "adding aliases to bashrc"
     echo "alias python=/root/miniconda3/bin/python" >> /root/.bashrc
@@ -28,8 +28,6 @@ then
     echo "sourcing bashrc"
     source ~/.bashrc
 fi
-echo "conda after"
-conda list
 #echo "ls root"
 #ls /
 #echo "ls /conda"
@@ -46,6 +44,7 @@ conda list
 /root/miniconda3/bin/conda install -y scipy scipy=1.4.1
 /root/miniconda3/bin/pip install matplotlib==3.2.1
 /root/miniconda3/bin/pip install func_timeout==4.3.5
+conda list
 #mgltools_directory=$(which mgltools)
 #sudo yum install jq
 #jsonStr=$(cat ./autogrow4-4.0.2/sample_submit_autogrow.json)
