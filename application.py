@@ -16,15 +16,17 @@ def execute():
     py_file = "RunAutogrow.py"
     params = "./sample_sub_scripts{}sample_submit_autogrow.json".format(os.sep)
     output_file = "current_run_output.txt"
+    tree_file = "tree.txt"
     os.chdir("autogrow4-4.0.2")
     command = "/conda/bin/python {} -j {}".format(py_file, params)
     os.system("{} > {}".format(command, output_file))
+    os.system("tree Outputfolder")
     os.chdir("..")
-    return "os.getcwd: {}<br/>command: {}<br/>json file: {}<br/>output:<br/>{}".format(
-        os.getcwd(),
+    return "command: {}<br/>json file: {}<br/>output:<br/>{}<br/>tree:<br/>{}".format(
         command,
         open("autogrow4-4.0.2/" + params).read(),
         open("autogrow4-4.0.2/" + output_file).read().replace(os.linesep, "<br/>"),
+        open("autogrow4-4.0.2/" + tree_file).read().replace(os.linesep, "<br/>"),
     )
 
 
