@@ -14,25 +14,14 @@ def execute():
     py_file = "RunAutogrow.py"
     params = "./sample_sub_scripts{}sample_submit_autogrow.json".format(os.sep)
     output_file = "current_run_output.txt"
-    tree_file = "tree.txt"
     os.chdir("autogrow4-4.0.2")
     command = "/conda/bin/python {} -j {}".format(py_file, params)
     os.system("{} > {}".format(command, output_file))
-    os.chdir("Outputfolder")
-    os.system("du -a > {}".format(tree_file))
-    os.chdir("../..")
-    return "command: {}<br/>json file: {}<br/>output:<br/>{}<br/>tree:<br/>{}<br/>docking output:<br/>{}".format(
+    os.chdir("..")
+    return "command: {}<br/>json file: {}<br/>output:<br/>{}".format(
         command,
         open("autogrow4-4.0.2/" + params).read(),
         open("autogrow4-4.0.2/" + output_file).read().replace(os.linesep, "<br/>"),
-        open("autogrow4-4.0.2/Outputfolder/" + tree_file)
-        .read()
-        .replace(os.linesep, "<br/>"),
-        open(
-            "autogrow4-4.0.2/Outputfolder/Run_0/generation_0/PDBs/naphthalene_22__1.pdbqt_docking_output.txt"
-        )
-        .read()
-        .replace(os.linesep, "<br/>"),
     )
 
 
