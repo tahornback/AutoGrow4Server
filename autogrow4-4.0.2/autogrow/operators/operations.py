@@ -881,14 +881,7 @@ def make_pass_through_list(vars, smiles_from_previous_gen_list,
             num_elite_to_advance_from_previous_gen,
         )
 
-    if generation_num == 0:
-        return list_of_ligands_to_advance
-    elif len(list_of_ligands_to_advance) >= num_elite_to_advance_from_previous_gen:
-        return list_of_ligands_to_advance
-
-    printout = "Not enough ligands were chosen to advance to the next generation."
-    return printout
-
+    return list_of_ligands_to_advance
 
 #############
 # Saving Output files for generations and seeds
