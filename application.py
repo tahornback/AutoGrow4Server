@@ -37,7 +37,7 @@ def executeTimeTrial():
     end_time = time.time()
     time_taken = end_time - start_time
     return "{} executions finished in {} seconds, averaging {} seconds per run<br/><br/><br/>{}".format(
-        times_to_execute, str(time_taken), str(time_taken / times_to_execute), printout
+        times_to_execute, str(time_taken), str(time_taken / int(times_to_execute)), printout
     )
 
 
