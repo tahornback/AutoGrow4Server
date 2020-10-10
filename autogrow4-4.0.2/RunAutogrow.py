@@ -22,6 +22,7 @@ import datetime
 ################
 # Run AutoGrow #
 ################
+import time
 
 PARSER = argparse.ArgumentParser()
 
@@ -650,7 +651,7 @@ for k, v in args_dict.items():
 
 if args_dict["cache_prerun"] is False:
 
-    start_time = str(datetime.datetime.now())
+    start_time = time.time()
     # load the commandline parameters
     from autogrow.user_vars import load_in_commandline_parameters
 
@@ -675,9 +676,10 @@ if args_dict["cache_prerun"] is False:
     AutogrowMainExecute.main_execute(vars)
 
     # Print completion message
-
-    printout = "\nAutoGrow4 run started at:   {}\nAutoGrow4 ".format(start_time)
-    printout = printout + "run completed at: {}\n".format(str(datetime.datetime.now()))
+    end_time = time.time()
+    printout = "\nAutoGrow4 run started at:   {}\nAutoGrow4 ".format(str(start_time))
+    printout = printout + "run completed at: {}\n".format(str(end_time))
+    printout = printout + "took {} ms".format(str(end_time-start_time))
     print(printout)
 
     print("AUTOGROW FINISHED")
