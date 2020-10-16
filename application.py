@@ -13,13 +13,13 @@ def hello():
 
 @application.route("/execute")
 def execute():
+    full_path = os.getcwd() + "/"
+    sub_folder = "autogrow4-4.0.2/"
     py_file = "RunAutogrow.py"
-    params = "./sample_sub_scripts{}sample_submit_autogrow.json".format(os.sep)
+    params = "sample_sub_scripts/sample_submit_autogrow.json"
     output_file = "current_run_output.txt"
-    os.chdir("autogrow4-4.0.2")
-    command = "/conda/bin/python {} -j {}".format(py_file, params)
-    os.system("{} > {}".format(command, output_file))
-    os.chdir("..")
+    command = "/conda/bin/python {} -j {}".format(full_path + sub_folder + py_file, full_path + sub_folder + params)
+    os.system("{} > {}".format(command, full_path + sub_folder + output_file))
     return "command: {}<br/>json file: {}<br/>output:<br/>{}".format(
         command,
         open("autogrow4-4.0.2/" + params).read(),
