@@ -27,6 +27,8 @@ then
     echo "sourcing bashrc"
     source /root/.bashrc
 fi
+echo "export PYTHONPATH=/conda/bin/python" >> /root/.bashrc
+export PYTHONPATH=/conda/bin/python
 conda install -c conda-forge rdkit
 conda install numpy
 conda install scipy
