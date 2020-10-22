@@ -2,7 +2,7 @@ import time
 
 from flask import Flask, request
 import os
-from rdkit import Chem
+# from rdkit import Chem
 import random
 import string
 
@@ -14,26 +14,33 @@ def hello():
     return "Hello World!"
 
 
-@application.route("/updateProperties")
-def updateProperties():
-    # Input: 2Dmol sdf as string
-    # Return: Smiles file, new 2dmol, 3dmol, descriptors
-    json = request.get_json()
-    #{game: 1, mol: "asdfas"}
-    mol2d = json.get("mol")
-    temp_file_name = "".join(random.choice(string.ascii_letters) for i in range(8)).join(".sdf")
-    temp_file = open(temp_file_name, "rw")
-    temp_file.write(mol2d)
-    temp_file.close()
+@application.route("/env")
+def env():
+    os.system("which python > whichOutput.txt")
+    os.system("env | more > envOutput.txt")
+    return "which: {}<br/>env|more: {}".format(open("whichOutput.txt").read(), open("envOutput.txt"))
 
-    mol = Chem.SDMolSupplier(temp_file_name)
-    return mol.GetNumAtoms()
-    # Gypsum
-    # RDKit
-    # RDKit
-    # Gypsum
-    # RDKit
-    pass
+
+# @application.route("/updateProperties")
+# def updateProperties():
+#     # Input: 2Dmol sdf as string
+#     # Return: Smiles file, new 2dmol, 3dmol, descriptors
+#     json = request.get_json()
+#     #{game: 1, mol: "asdfas"}
+#     mol2d = json.get("mol")
+#     temp_file_name = "".join(random.choice(string.ascii_letters) for i in range(8)).join(".sdf")
+#     temp_file = open(temp_file_name, "rw")
+#     temp_file.write(mol2d)
+#     temp_file.close()
+#
+#     mol = Chem.SDMolSupplier(temp_file_name)
+#     return mol.GetNumAtoms()
+#     # Gypsum
+#     # RDKit
+#     # RDKit
+#     # Gypsum
+#     # RDKit
+#     pass
 
 
 @application.route("/execute")
