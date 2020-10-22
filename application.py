@@ -18,7 +18,7 @@ def hello():
 def env():
     os.system("which python > whichOutput.txt")
     os.system("env | more > envOutput.txt")
-    return "which: {}<br/>env|more: {}".format(open("whichOutput.txt").read(), open("envOutput.txt"))
+    return "which: {}<br/>env|more: {}".format(open("whichOutput.txt").read(), open("envOutput.txt").read())
 
 
 # @application.route("/updateProperties")
