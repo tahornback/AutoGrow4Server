@@ -74,5 +74,7 @@ def executeTimeTrial():
 
 
 if __name__ == "__main__":
+    raise Exception("flask_app.py started directly, must be started via applicaiton.py with conda")
+else:
     application.debug = True
     application.run()
