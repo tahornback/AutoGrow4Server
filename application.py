@@ -54,14 +54,14 @@ def updateProperties():
     vars = user_vars.define_defaults()
     smiles_list = [sanitized_smiles]
     smiles_to_convert_file, new_gen_folder_path = operations.save_generation_smi(
-        "./smiles_dir/",
+        os.getcwd()+"/smiles_dir/",
         0,
         smiles_list,
-        "",
+        None,
     )
     conversion_to_3d.convert_to_3d(vars, smiles_to_convert_file, new_gen_folder_path)
 
-    return "{} {} {} {} {} {}".format(mol2d, mol.GetNumAtoms(), mol, smiles, sanitized_smiles, open("smiles_dir/generation_0.smi").read())
+    return "{} {} {} {} {} {}".format(mol2d, mol.GetNumAtoms(), mol, smiles, sanitized_smiles, open("smiles_dir/generation_0/generation_0.smi").read())
     # Gypsum
     # RDKit
     # RDKit
