@@ -8,7 +8,7 @@ import random
 import copy
 
 
-import autogrow.operators.mutation.smiles_click_chem.smiles_click_chem as SmileClickClass
+import autogrow4.autogrow.operators.mutation.smiles_click_chem.smiles_click_chem as SmileClickClass
 
 
 #######################################

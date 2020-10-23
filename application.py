@@ -2,10 +2,11 @@ import time
 
 from flask import Flask, request
 import os
+import autogrow4.autogrow.operators.operations as operations
+operations.test()
 from rdkit import Chem
 import random
 import string
-import autogrow4.autogrow.operators.operations as operations
 
 application = Flask(__name__)
 

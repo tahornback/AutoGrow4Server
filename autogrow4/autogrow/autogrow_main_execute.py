@@ -10,9 +10,9 @@ import glob
 import sys
 import shutil
 
-import autogrow.docking.execute_docking as DockingClass
-import autogrow.operators.operations as operations
-import autogrow.docking.concatenate_files as concatenate_files
+import autogrow4.autogrow.docking.execute_docking as DockingClass
+import autogrow4.autogrow.operators.operations as operations
+import autogrow4.autogrow.docking.concatenate_files as concatenate_files
 
 def main_execute(vars):
     """

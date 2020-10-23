@@ -1607,20 +1607,20 @@ def make_complete_children_dict(purpose_of_object):
         Filtering, docking, Dockingfile conversion or scoring
     """
     if purpose_of_object == "filter":
-        import autogrow.operators.filter.filter_classes.filter_children_classes
+        import autogrow4.autogrow.operators.filter.filter_classes.filter_children_classes
         from autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter as parent_object
         from autogrow.operators.filter.filter_classes.get_child_filter_class import get_all_subclasses
 
     elif purpose_of_object == "parent_pdbqt_converter":
-        import autogrow.docking.docking_class.docking_file_conversion
+        import autogrow4.autogrow.docking.docking_class.docking_file_conversion
         from autogrow.docking.docking_class.parent_pdbqt_converter import ParentPDBQTConverter as parent_object
         from autogrow.docking.docking_class.get_child_class import get_all_subclasses
     elif purpose_of_object == "ParentDocking":
-        import autogrow.docking.docking_class.docking_class_children
+        import autogrow4.autogrow.docking.docking_class.docking_class_children
         from autogrow.docking.docking_class.parent_dock_class import ParentDocking as parent_object
         from autogrow.docking.docking_class.get_child_class import get_all_subclasses
     elif purpose_of_object == "ParentScoring":
-        import autogrow.docking.scoring.scoring_classes.scoring_functions
+        import autogrow4.autogrow.docking.scoring.scoring_classes.scoring_functions
         from autogrow.docking.scoring.scoring_classes.parent_scoring_class import ParentScoring as parent_object
         from autogrow.docking.docking_class.get_child_class import get_all_subclasses
 
@@ -2081,7 +2081,7 @@ def filter_choice_handling(vars):
         chosen_ligand_filters, vars = picked_filters(vars)
     vars["chosen_ligand_filters"] = chosen_ligand_filters
 
-    import autogrow.operators.filter.execute_filters as Filter
+    import autogrow4.autogrow.operators.filter.execute_filters as Filter
 
 
     # get child filter class object function dictionary

@@ -671,7 +671,7 @@ if args_dict["cache_prerun"] is False:
     # Run AUTOGROW. Import move here to prevent EOF in MPI mode. importing
     # files before the Parallelizer class is established in MPI mode can have
     # errors
-    import autogrow.autogrow_main_execute as AutogrowMainExecute
+    import autogrow4.autogrow.autogrow_main_execute as AutogrowMainExecute
 
     AutogrowMainExecute.main_execute(vars)
 
@@ -689,6 +689,6 @@ if args_dict["cache_prerun"] is False:
 
 
 else:  # cache prerun. This is necessary to prevent race conditions in mpi mode.
-    import autogrow.user_vars
-    import autogrow.autogrow_main_execute as AutogrowMainExecute
-    import autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer
+    import autogrow4.autogrow.user_vars
+    import autogrow4.autogrow.autogrow_main_execute as AutogrowMainExecute
+    import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer

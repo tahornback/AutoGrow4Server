@@ -15,14 +15,14 @@ import rdkit.Chem as Chem
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")
 
-import autogrow.operators.filter.execute_filters as Filter
-import autogrow.docking.ranking.ranking_mol as Ranking
-import autogrow.operators.mutation.execute_mutations as Mutation
-import autogrow.operators.crossover.execute_crossover as execute_crossover
-import autogrow.operators.convert_files.conversion_to_3d as conversion_to_3d
-import autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
+import autogrow4.autogrow.docking.ranking.ranking_mol as Ranking
+import autogrow4.autogrow.operators.mutation.execute_mutations as Mutation
+import autogrow4.autogrow.operators.crossover.execute_crossover as execute_crossover
+import autogrow4.autogrow.operators.convert_files.conversion_to_3d as conversion_to_3d
+import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
 
-
+def test():
+    print("all good")
 
 #############
 # Main run Autogrow operators to make a generation

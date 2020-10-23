@@ -7,7 +7,7 @@ import __future__
 from autogrow.docking.docking_class.get_child_class import get_all_subclasses
 
 # importing scoring_functions is necessary to find rescoring modules
-import autogrow.docking.scoring.scoring_classes.scoring_functions
+import autogrow4.autogrow.docking.scoring.scoring_classes.scoring_functions
 from autogrow.docking.scoring.scoring_classes.parent_scoring_class import ParentScoring
 
 
