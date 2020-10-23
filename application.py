@@ -22,7 +22,7 @@ def env():
     return "which: {}<br/>env|more: {}".format(open("whichOutput.txt").read(), open("envOutput.txt").read())
 
 
-@application.route("/updateProperties")
+@application.route("/updateProperties", methods=["POST"])
 def updateProperties():
     # Input: 2Dmol sdf as string
     # Return: Smiles file, new 2dmol, 3dmol, descriptors
