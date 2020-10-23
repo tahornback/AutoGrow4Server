@@ -5,6 +5,7 @@ import os
 from rdkit import Chem
 import random
 import string
+import autogrow.operators.operations as operations
 
 application = Flask(__name__)
 
@@ -36,7 +37,14 @@ def updateProperties():
 
     supplier = Chem.SDMolSupplier(temp_file_name)
     mol = supplier[0]
-    return "{} {} {}".format(mol2d, mol.GetNumAtoms(), mol)
+    smiles = Chem.molToSmiles(mol)
+
+    sanitized_smiles = operations.test_source_smiles_convert_update_properties(smiles)
+
+    # if smiles != sanitized_smiles:
+    #     return "smiles did not sanitize"
+
+    return "{} {} {} {} {}".format(mol2d, mol.GetNumAtoms(), mol, smiles, sanitized_smiles)
     # Gypsum
     # RDKit
     # RDKit

@@ -496,6 +496,95 @@ def populate_generation_zero(vars, generation_num=0):
     return already_docked, full_generation_smiles_file, full_generation_smiles_list
 
 
+def test_source_smiles_convert_update_properties(smile_str):
+    """
+    This attempts to convert a SMILES string to an rdkit.Chem.rdchem.Mol
+    object
+        -done in a try statement so that it is some bad SMILES string which is
+        incapable of being converted
+        - it also checks that the SMILES string is able to be sanitized
+
+    Inputs:
+    :param string smile_info: a string containing the SMILES of a ligand
+
+    Returns:
+    :returns: string smile_info: If it passed the test, it returns the string
+        containing the SMILES of a ligand
+
+    :returns: str printout: If it failed to convert it returns the error
+        message. This passess out to prevent MPI print issues
+    """
+    if smile_str is None or len(smile_str) == 0:
+        printout = (
+                "REMOVING SMILES FROM SOURCE LIST: Blank "
+                + "entry in source compound list.\n"
+        )
+        printout = printout + "\tRemoving: {}".format(smile_str)
+        return printout
+
+    if type(smile_str) is not type(""):
+        printout = "REMOVING SMILES FROM SOURCE LIST: SMILES string is not a "
+        printout = printout + "String. Check for formatting errors. \n"
+        printout = printout + "\tIgnored SMILES is: {}".format(smile_str)
+        return printout
+
+    # Try importing it into RDKit with Sanitization off. Tests for errors in
+    # having the wrong data type
+    try:
+        mol = Chem.MolFromSmiles(str(smile_str), sanitize=False)
+    except:
+        printout = "REMOVING SMILES FROM SOURCE LIST: SMILES string failed "
+        printout = printout + "to import into RDKit.\n\t "
+        printout = printout + "Removed SMILE string is: {} \n".format(smile_str)
+        return printout
+
+    # This will fail if there are valence errors. We won't try to correct
+    # someones source compound list Although the MOH.check_sanitization will
+    # do that. try sanitizing, which is necessary later
+    try:
+        Chem.SanitizeMol(mol)
+    except:
+        printout = "REMOVING SMILES FROM SOURCE LIST: SMILES "
+        printout = printout + "string failed to Sanitize in RDKit.\n"
+        printout = printout + "\t Removed SMILE string is: {} \n".format(smile_str)
+        return printout
+
+    # Make the mol again fresh and try running it through MOH.handleHs() This
+    # will try protanating and Deprotanating the mol. If it can't handle that
+    # We reject it as many functions will require this sort of manipulation.
+    # More advanced sanitization issues will also be removed in this step
+    mol = Chem.MolFromSmiles(str(smile_str), sanitize=False)
+    mol = MOH.handleHs(mol, True)
+
+    if mol is None:
+        printout = "REMOVING SMILES FROM SOURCE LIST: SMILES string failed \
+                    to be protanated or deprotanated.\n"
+        printout = (
+                printout
+                + "\t This is often an issue with valence and sanitization "
+                + "issues with the SMILES string."
+        )
+        printout = printout + "\t Removed SMILE string is: {} \n".format(smile_str)
+        return printout
+
+    # Check there are no * which are atoms with atomic number=0
+    mol = MOH.check_for_unassigned_atom(mol)
+    if mol is None:
+        printout = "REMOVING SMILES FROM SOURCE LIST: SMILES string contained "
+        printout = printout + "an unassigned atom type labeled as *.\n"
+        printout = printout + "\t Removed SMILE string is: {} \n".format(smile_str)
+        return printout
+
+    # Check for fragments.
+    if len(Chem.GetMolFrags(mol, asMols=True, sanitizeFrags=False)) != 1:
+
+        printout = "REMOVING SMILES FROM SOURCE LIST: SMILES string was fragmented.\n"
+        printout = printout + "\t Removed SMILE string is: {} \n".format(smile_str)
+        return printout
+
+    # the ligand is good enough to use throughout the program!
+    return smile_info
+
 #############
 # Get seeds
 #############
