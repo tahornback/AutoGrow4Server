@@ -32,5 +32,6 @@ export PYTHONPATH=/conda/bin/python
 conda install -c conda-forge rdkit
 conda install numpy
 conda install scipy
+conda install -c anaconda flask
 /conda/bin/pip install matplotlib==3.2.1
 /conda/bin/pip install func_timeout==4.3.5
