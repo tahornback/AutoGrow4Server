@@ -2,7 +2,7 @@ import time
 
 from flask import Flask, request
 import os
-# from rdkit import Chem
+from rdkit import Chem
 import random
 import string
 
