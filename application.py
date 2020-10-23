@@ -3,6 +3,8 @@ import time
 from flask import Flask, request
 import os
 import autogrow4.autogrow.operators.operations as operations
+import autogrow4.autogrow.operators.convert_files.conversion_to_3d as conversion_to_3d
+import autogrow4.autogrow.user_vars as user_vars
 operations.test()
 from rdkit import Chem
 import random
@@ -28,6 +30,8 @@ def env():
 def updateProperties():
     # Input: 2Dmol sdf as string
     # Return: Smiles file, new 2dmol, 3dmol, descriptors
+    if not os.path.exists('smiles_dir'):
+        os.makedirs('smiles_dir')
     json = request.get_json()
     #{game: 1, mol: "asdfas"}
     mol2d = json.get("mol")
@@ -45,7 +49,19 @@ def updateProperties():
     # if smiles != sanitized_smiles:
     #     return "smiles did not sanitize"
 
-    return "{} {} {} {} {}".format(mol2d, mol.GetNumAtoms(), mol, smiles, sanitized_smiles)
+    # vars (in this method) will contain a lot of stuff we don't care about.  That is okay because
+    # the method calls will only use what they need
+    vars = user_vars.define_defaults()
+    smiles_list = [sanitized_smiles]
+    smiles_to_convert_file, new_gen_folder_path = operations.save_generation_smi(
+        "./smiles_dir/",
+        0,
+        smiles_list,
+        "",
+    )
+    conversion_to_3d.convert_to_3d(vars, smiles_to_convert_file, new_gen_folder_path)
+
+    return "{} {} {} {} {} {}".format(mol2d, mol.GetNumAtoms(), mol, smiles, sanitized_smiles, open("smiles_dir/generation_0.smi").read())
     # Gypsum
     # RDKit
     # RDKit
