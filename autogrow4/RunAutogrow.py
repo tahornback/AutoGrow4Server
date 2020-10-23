@@ -653,7 +653,7 @@ if args_dict["cache_prerun"] is False:
 
     start_time = time.time()
     # load the commandline parameters
-    from autogrow4.autogrow.user_vars import load_in_commandline_parameters
+    from autogrow.user_vars import load_in_commandline_parameters
 
     vars, printout = load_in_commandline_parameters(INPUTS)
 
