@@ -9,7 +9,7 @@ import glob
 
 import autogrow4.autogrow.docking.delete_failed_mol as Delete
 import autogrow4.autogrow.docking.ranking.ranking_mol as Ranking
-from autogrow.docking.docking_class.parent_dock_class import ParentDocking
+from autogrow4.autogrow.docking.docking_class.parent_dock_class import ParentDocking
 import autogrow4.autogrow.docking.scoring.execute_scoring_mol as Scoring
 
 

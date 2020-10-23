@@ -6,7 +6,7 @@ import __future__
 import os
 import sys
 
-from autogrow.docking.docking_class.docking_class_children.vina_docking import VinaDocking
+from autogrow4.autogrow.docking.docking_class.docking_class_children.vina_docking import VinaDocking
 
 
 class QuickVina2Docking(VinaDocking):

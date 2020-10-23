@@ -4,11 +4,11 @@ This function handles the scoring/rescoring of docked molecules.
 
 import __future__
 
-from autogrow.docking.docking_class.get_child_class import get_all_subclasses
+from autogrow4.autogrow.docking.docking_class.get_child_class import get_all_subclasses
 
 # importing scoring_functions is necessary to find rescoring modules
 import autogrow4.autogrow.docking.scoring.scoring_classes.scoring_functions
-from autogrow.docking.scoring.scoring_classes.parent_scoring_class import ParentScoring
+from autogrow4.autogrow.docking.scoring.scoring_classes.parent_scoring_class import ParentScoring
 
 
 def pick_run_class_dict(scoring_choice):

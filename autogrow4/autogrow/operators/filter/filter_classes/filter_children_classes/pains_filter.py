@@ -18,7 +18,7 @@ import __future__
 from rdkit.Chem import FilterCatalog
 from rdkit.Chem.FilterCatalog import FilterCatalogParams
 
-from autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
+from autogrow4.autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
 
 
 class PAINSFilter(ParentFilter):

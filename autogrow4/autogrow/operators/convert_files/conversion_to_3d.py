@@ -30,7 +30,7 @@ GYPSUM_GYPSUM_DIR = (
 sys.path.extend([GYPSUM_DIR, CURRENT_DIR, GYPSUM_GYPSUM_DIR])
 
 import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
-from autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Start import prepare_molecules
+from autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Start import prepare_molecules
 
 
 

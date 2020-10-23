@@ -23,7 +23,7 @@ import rdkit.Chem.Descriptors as Descriptors
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")
 
-from autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
+from autogrow4.autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
 
 
 class VandeWaterbeemdFilter(ParentFilter):
