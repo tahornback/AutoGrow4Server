@@ -583,7 +583,7 @@ def test_source_smiles_convert_update_properties(smile_str):
         return printout
 
     # the ligand is good enough to use throughout the program!
-    return smile_info
+    return smile_str
 
 #############
 # Get seeds
