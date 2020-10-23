@@ -34,7 +34,8 @@ def updateProperties():
     temp_file.write(mol2d)
     temp_file.close()
 
-    mol = Chem.SDMolSupplier(temp_file_name)
+    supplier = Chem.SDMolSupplier(temp_file_name)
+    mol = supplier[0]
     return "{} {} {}".format(mol2d, mol.GetNumAtoms(), mol)
     # Gypsum
     # RDKit
