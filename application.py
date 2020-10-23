@@ -2,7 +2,7 @@ import time
 
 from flask import Flask, request
 import os
-from rdkit import Chem
+# from rdkit import Chem
 import random
 import string
 
@@ -17,6 +17,7 @@ def hello():
 @application.route("/env")
 def env():
     os.system("which python > whichOutput.txt")
+    os.system("which gunicorn >> whichOutput.txt")
     os.system("env | more > envOutput.txt")
     return "which: {}<br/>env|more: {}".format(open("whichOutput.txt").read(), open("envOutput.txt").read())
 
