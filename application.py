@@ -30,12 +30,12 @@ def updateProperties():
     #{game: 1, mol: "asdfas"}
     mol2d = json.get("mol")
     temp_file_name = "".join(random.choice(string.ascii_letters) for i in range(8)).join(".sdf")
-    temp_file = open(temp_file_name, "rw")
+    temp_file = open(temp_file_name, "w")
     temp_file.write(mol2d)
     temp_file.close()
 
     mol = Chem.SDMolSupplier(temp_file_name)
-    return mol.GetNumAtoms()
+    return "{} {} {}".format(mol2d, mol.GetNumAtoms(), mol)
     # Gypsum
     # RDKit
     # RDKit
