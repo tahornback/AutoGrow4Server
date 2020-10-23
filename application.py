@@ -5,7 +5,7 @@ import os
 from rdkit import Chem
 import random
 import string
-import autogrow.operators.operations as operations
+import autogrow4.autogrow.operators.operations as operations
 
 application = Flask(__name__)
 
@@ -56,7 +56,7 @@ def updateProperties():
 @application.route("/execute")
 def execute():
     full_path = os.getcwd() + "/"
-    sub_folder = "autogrow4-4.0.2/"
+    sub_folder = "autogrow4/"
     py_file = "RunAutogrow.py"
     params = "sample_sub_scripts/sample_submit_autogrow.json"
     output_file = "current_run_output.txt"
@@ -64,8 +64,8 @@ def execute():
     os.system("{} > {}".format(command, full_path + sub_folder + output_file))
     return "command: {}<br/>json file: {}<br/>output:<br/>{}".format(
         command,
-        open("autogrow4-4.0.2/" + params).read(),
-        open("autogrow4-4.0.2/" + output_file).read().replace(os.linesep, "<br/>"),
+        open(sub_folder + params).read(),
+        open(sub_folder + output_file).read().replace(os.linesep, "<br/>"),
     )
 
 
