@@ -38,7 +38,7 @@ def updateProperties():
 
     supplier = Chem.SDMolSupplier(temp_file_name)
     mol = supplier[0]
-    smiles = Chem.molToSmiles(mol)
+    smiles = Chem.MolToSmiles(mol)
 
     sanitized_smiles = operations.test_source_smiles_convert_update_properties(smiles)
 
