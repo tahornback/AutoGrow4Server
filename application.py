@@ -63,8 +63,8 @@ def updateProperties():
         None,
     )
     conversion_to_3d.convert_to_3d(vars, smiles_to_convert_file, new_gen_folder_path)
-
-    return "{}\n{}\n{}\n{}\n{}\n{}\n{}".format(mol2d, mol.GetNumAtoms(), mol, smiles, sanitized_smiles, os.system("dir "+new_gen_folder_path+"/3D_SDFs/"),
+    file_in_3d_folder = os.system("dir "+new_gen_folder_path+"/3D_SDFs/ > 3d_folder_contents.txt")
+    return "{}\n{}\n{}\n{}\n{}\n{}\n{}".format(mol2d, mol.GetNumAtoms(), mol, smiles, sanitized_smiles, open("3d_folder_contents.txt").read(),
                                                # open(new_gen_folder_path+"/3D_SDFs/").read()
                                                "this would be the 3d sdf"
                                                )
