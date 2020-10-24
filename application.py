@@ -62,10 +62,12 @@ def updateProperties():
         smiles_list,
         None,
     )
+    folder_contents = open("3d_folder_contents.txt").read()
+    print(folder_contents)
     conversion_to_3d.convert_to_3d(vars, smiles_to_convert_file, new_gen_folder_path)
     file_in_3d_folder = os.system("dir "+new_gen_folder_path+"/3D_SDFs/ > 3d_folder_contents.txt")
-    return "{}\n{}\n{}\n{}\n{}\n{}\n{}".format(mol2d, Chem.MolToMolBlock(mol), mol, smiles, sanitized_smiles, open("3d_folder_contents.txt").read(),
-                                               open(new_gen_folder_path+"/3D_SDFs/C__input1.sdf").read()
+    return "{}\n{}\n{}\n{}\n{}\n{}\n{}".format(mol2d, Chem.MolToMolBlock(mol), mol, smiles, sanitized_smiles, folder_contents,
+                                               open(new_gen_folder_path+"/3D_SDFs/random_name__input1.sdf").read()
                                                )
     # Gypsum
     # RDKit
