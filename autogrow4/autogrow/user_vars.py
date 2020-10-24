@@ -126,10 +126,14 @@ def multiprocess_handling(vars):
     # # # launch mpi workers
     if vars["multithread_mode"] == "mpi":
         # Avoid EOF error
-        from autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer import (
-            Parallelizer,
-        )
-
+        try:
+            from autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer import (
+                Parallelizer,
+            )
+        except Exception as e:
+            from autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer import (
+                Parallelizer,
+            )
         vars["parallelizer"] = Parallelizer(
             vars["multithread_mode"], vars["number_of_processors"]
         )
@@ -144,8 +148,10 @@ def multiprocess_handling(vars):
         #   has problems with importing the MPI environment and mpi4py
         #   So we will flag it to skip the MPI mode and just go to multithread/serial
         # This is a saftey precaution
-        from autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer import Parallelizer
-
+        try:
+            from autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer import Parallelizer
+        except Exception as e:
+            from autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer import Parallelizer
         vars["parallelizer"] = Parallelizer(
             vars["multithread_mode"], vars["number_of_processors"], True
         )
