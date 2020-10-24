@@ -16,7 +16,10 @@ import rdkit
 from rdkit.Chem import FilterCatalog
 from rdkit.Chem.FilterCatalog import FilterCatalogParams
 
-from autogrow4.autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
+try:
+    from autogrow4.autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
+except Exception as e:
+    from autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
 
 
 class NIHFilter(ParentFilter):
