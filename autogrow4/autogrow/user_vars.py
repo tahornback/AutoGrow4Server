@@ -126,7 +126,7 @@ def multiprocess_handling(vars):
     # # # launch mpi workers
     if vars["multithread_mode"] == "mpi":
         # Avoid EOF error
-        from autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer import (
+        from autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer import (
             Parallelizer,
         )
 
@@ -144,7 +144,7 @@ def multiprocess_handling(vars):
         #   has problems with importing the MPI environment and mpi4py
         #   So we will flag it to skip the MPI mode and just go to multithread/serial
         # This is a saftey precaution
-        from autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer import Parallelizer
+        from autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer import Parallelizer
 
         vars["parallelizer"] = Parallelizer(
             vars["multithread_mode"], vars["number_of_processors"], True
@@ -1607,22 +1607,22 @@ def make_complete_children_dict(purpose_of_object):
         Filtering, docking, Dockingfile conversion or scoring
     """
     if purpose_of_object == "filter":
-        import autogrow4.autogrow.operators.filter.filter_classes.filter_children_classes
-        from autogrow4.autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter as parent_object
-        from autogrow4.autogrow.operators.filter.filter_classes.get_child_filter_class import get_all_subclasses
+        import autogrow.operators.filter.filter_classes.filter_children_classes
+        from autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter as parent_object
+        from autogrow.operators.filter.filter_classes.get_child_filter_class import get_all_subclasses
 
     elif purpose_of_object == "parent_pdbqt_converter":
-        import autogrow4.autogrow.docking.docking_class.docking_file_conversion
-        from autogrow4.autogrow.docking.docking_class.parent_pdbqt_converter import ParentPDBQTConverter as parent_object
-        from autogrow4.autogrow.docking.docking_class.get_child_class import get_all_subclasses
+        import autogrow.docking.docking_class.docking_file_conversion
+        from autogrow.docking.docking_class.parent_pdbqt_converter import ParentPDBQTConverter as parent_object
+        from autogrow.docking.docking_class.get_child_class import get_all_subclasses
     elif purpose_of_object == "ParentDocking":
-        import autogrow4.autogrow.docking.docking_class.docking_class_children
-        from autogrow4.autogrow.docking.docking_class.parent_dock_class import ParentDocking as parent_object
-        from autogrow4.autogrow.docking.docking_class.get_child_class import get_all_subclasses
+        import autogrow.docking.docking_class.docking_class_children
+        from autogrow.docking.docking_class.parent_dock_class import ParentDocking as parent_object
+        from autogrow.docking.docking_class.get_child_class import get_all_subclasses
     elif purpose_of_object == "ParentScoring":
-        import autogrow4.autogrow.docking.scoring.scoring_classes.scoring_functions
-        from autogrow4.autogrow.docking.scoring.scoring_classes.parent_scoring_class import ParentScoring as parent_object
-        from autogrow4.autogrow.docking.docking_class.get_child_class import get_all_subclasses
+        import autogrow.docking.scoring.scoring_classes.scoring_functions
+        from autogrow.docking.scoring.scoring_classes.parent_scoring_class import ParentScoring as parent_object
+        from autogrow.docking.docking_class.get_child_class import get_all_subclasses
 
     children = get_all_subclasses(parent_object)
     child_dict = {}
@@ -2081,7 +2081,7 @@ def filter_choice_handling(vars):
         chosen_ligand_filters, vars = picked_filters(vars)
     vars["chosen_ligand_filters"] = chosen_ligand_filters
 
-    import autogrow4.autogrow.operators.filter.execute_filters as Filter
+    import autogrow.operators.filter.execute_filters as Filter
 
 
     # get child filter class object function dictionary
