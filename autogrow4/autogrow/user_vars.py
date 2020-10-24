@@ -144,7 +144,7 @@ def multiprocess_handling(vars):
         #   has problems with importing the MPI environment and mpi4py
         #   So we will flag it to skip the MPI mode and just go to multithread/serial
         # This is a saftey precaution
-        from autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer import Parallelizer
+        from autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer import Parallelizer
 
         vars["parallelizer"] = Parallelizer(
             vars["multithread_mode"], vars["number_of_processors"], True
