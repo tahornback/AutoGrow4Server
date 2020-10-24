@@ -55,7 +55,7 @@ def updateProperties():
     # the method calls will only use what they need
     vars = user_vars.define_defaults()
     vars = user_vars.multiprocess_handling(vars)
-    smiles_list = [sanitized_smiles]
+    smiles_list = [(sanitized_smiles, "random_name")]
     smiles_to_convert_file, new_gen_folder_path = operations.save_generation_smi(
         os.getcwd()+"/smiles_dir/",
         0,
