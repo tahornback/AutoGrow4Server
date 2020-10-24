@@ -8,9 +8,12 @@ import glob
 import os
 import sys
 
-
-from autogrow4.autogrow.docking.scoring.scoring_classes.parent_scoring_class import ParentScoring
-from autogrow4.autogrow.docking.scoring.scoring_classes.scoring_functions.vina import VINA
+try:
+    from autogrow4.autogrow.docking.scoring.scoring_classes.parent_scoring_class import ParentScoring
+    from autogrow4.autogrow.docking.scoring.scoring_classes.scoring_functions.vina import VINA
+except Exception as e:
+    from autogrow.docking.scoring.scoring_classes.parent_scoring_class import ParentScoring
+    from autogrow.docking.scoring.scoring_classes.scoring_functions.vina import VINA
 
 
 class NN2(VINA):

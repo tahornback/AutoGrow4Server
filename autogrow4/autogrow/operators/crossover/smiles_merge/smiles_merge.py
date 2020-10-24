@@ -9,12 +9,16 @@ from rdkit.Chem import rdFMCS
 
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")
-
-import autogrow4.autogrow.operators.crossover.smiles_merge.merge_functions.merge_w_core as MWC
-import autogrow4.autogrow.operators.crossover.smiles_merge.merge_functions.dict_and_r_groups as DnR
-import autogrow4.autogrow.operators.crossover.smiles_merge.merge_functions.alignment_and_breaks as AnB
-import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
-
+try:
+    import autogrow4.autogrow.operators.crossover.smiles_merge.merge_functions.merge_w_core as MWC
+    import autogrow4.autogrow.operators.crossover.smiles_merge.merge_functions.dict_and_r_groups as DnR
+    import autogrow4.autogrow.operators.crossover.smiles_merge.merge_functions.alignment_and_breaks as AnB
+    import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
+except Exception as e:
+    import autogrow.operators.crossover.smiles_merge.merge_functions.merge_w_core as MWC
+    import autogrow.operators.crossover.smiles_merge.merge_functions.dict_and_r_groups as DnR
+    import autogrow.operators.crossover.smiles_merge.merge_functions.alignment_and_breaks as AnB
+    import autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
 def process_ligand_new_mol(ligand_new_mol):
     """
     This function processes the ligand_new_mol.

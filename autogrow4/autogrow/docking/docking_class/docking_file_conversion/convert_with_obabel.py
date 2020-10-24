@@ -8,11 +8,14 @@ import subprocess
 import datetime
 
 import rdkit.Chem as Chem
-
-import autogrow4.autogrow.docking.delete_failed_mol as Delete
-import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
-
-from autogrow4.autogrow.docking.docking_class.parent_pdbqt_converter import ParentPDBQTConverter
+try:
+    import autogrow4.autogrow.docking.delete_failed_mol as Delete
+    import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
+    from autogrow4.autogrow.docking.docking_class.parent_pdbqt_converter import ParentPDBQTConverter
+except:
+    import autogrow.docking.delete_failed_mol as Delete
+    import autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
+    from autogrow.docking.docking_class.parent_pdbqt_converter import ParentPDBQTConverter
 
 
 class ObabelConversion(ParentPDBQTConverter):

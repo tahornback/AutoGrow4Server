@@ -12,10 +12,12 @@ from rdkit.Chem import AllChem
 
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")
-
-import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
-import autogrow4.autogrow.operators.filter.execute_filters as Filter
-
+try:
+    import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
+    import autogrow4.autogrow.operators.filter.execute_filters as Filter
+except:
+    import autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
+    import autogrow.operators.filter.execute_filters as Filter
 
 class SmilesClickChem(object):
     """    This class will take a molecule and Mutate it by reacting it.    """

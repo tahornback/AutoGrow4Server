@@ -6,9 +6,10 @@ import __future__
 
 import glob
 import os
-
-from autogrow4.autogrow.docking.scoring.scoring_classes.parent_scoring_class import ParentScoring
-
+try:
+    from autogrow4.autogrow.docking.scoring.scoring_classes.parent_scoring_class import ParentScoring
+except:
+    from autogrow.docking.scoring.scoring_classes.parent_scoring_class import ParentScoring
 
 class VINA(ParentScoring):
     """

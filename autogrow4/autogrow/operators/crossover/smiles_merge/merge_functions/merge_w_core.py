@@ -10,8 +10,10 @@ from rdkit import Chem
 
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")
-
-import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
+try:
+    import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
+except Exception as e:
+    import autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
 
 
 

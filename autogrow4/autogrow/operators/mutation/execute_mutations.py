@@ -7,8 +7,10 @@ import __future__
 import random
 import copy
 
-
-import autogrow4.autogrow.operators.mutation.smiles_click_chem.smiles_click_chem as SmileClickClass
+try:
+    import autogrow4.autogrow.operators.mutation.smiles_click_chem.smiles_click_chem as SmileClickClass
+except Exception as e:
+    import autogrow.operators.mutation.smiles_click_chem.smiles_click_chem as SmileClickClass
 
 
 #######################################

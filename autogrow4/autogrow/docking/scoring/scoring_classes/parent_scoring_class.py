@@ -11,7 +11,7 @@ class ParentScoring(object):
 
     def get_name(self):
         """
-        Returns the current class name.
+        Returns the current class name.v
 
         Returns:
         :returns: str self.__class__.__name__: the current class name.
