@@ -64,7 +64,7 @@ def updateProperties():
     )
     conversion_to_3d.convert_to_3d(vars, smiles_to_convert_file, new_gen_folder_path)
 
-    return "{} {} {} {} {} {}".format(mol2d, mol.GetNumAtoms(), mol, smiles, sanitized_smiles, open("smiles_dir/generation_0/generation_0.smi").read())
+    return "{}\n{}\n{}\n{}\n{}\n{}".format(mol2d, mol.GetNumAtoms(), mol, smiles, sanitized_smiles, open("smiles_dir/generation_0/generation_0.smi").read())
     # Gypsum
     # RDKit
     # RDKit
