@@ -6,8 +6,10 @@ import __future__
 import os
 import sys
 
-from autogrow4.autogrow.docking.docking_class.docking_class_children.vina_docking import VinaDocking
-
+try:
+    from autogrow4.autogrow.docking.docking_class.docking_class_children.vina_docking import VinaDocking
+except Exception as e:
+    from autogrow.docking.docking_class.docking_class_children.vina_docking import VinaDocking
 
 class QuickVina2Docking(VinaDocking):
     """
