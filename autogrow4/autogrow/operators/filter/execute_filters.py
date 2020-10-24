@@ -11,12 +11,18 @@ from rdkit.Chem.MolStandardize import rdMolStandardize
 
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")
+try:
+    from autogrow4.autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
+    from autogrow4.autogrow.operators.filter.filter_classes.get_child_filter_class import get_all_subclasses
 
-from autogrow4.autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
-from autogrow4.autogrow.operators.filter.filter_classes.get_child_filter_class import get_all_subclasses
+    import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
+    from autogrow4.autogrow.operators.filter.filter_classes.filter_children_classes import *
+except Exception as e:
+    from autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
+    from autogrow.operators.filter.filter_classes.get_child_filter_class import get_all_subclasses
 
-import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
-from autogrow4.autogrow.operators.filter.filter_classes.filter_children_classes import *
+    import autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
+    from autogrow.operators.filter.filter_classes.filter_children_classes import *
 
 
 def make_run_class_dict(filters_to_use):
