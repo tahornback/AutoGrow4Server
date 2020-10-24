@@ -32,6 +32,8 @@ def updateProperties():
     # Return: Smiles file, new 2dmol, 3dmol, descriptors
     if not os.path.exists(os.getcwd()+'/smiles_dir'):
         os.makedirs(os.getcwd()+'/smiles_dir')
+    if not os.path.exists(os.getcwd()+'/smiles_dir/generation_0'):
+        os.makedirs(os.getcwd()+'/smiles_dir/generation_0')
     json = request.get_json()
     #{game: 1, mol: "asdfas"}
     mol2d = json.get("mol")
