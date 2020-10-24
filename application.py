@@ -54,6 +54,7 @@ def updateProperties():
     # vars (in this method) will contain a lot of stuff we don't care about.  That is okay because
     # the method calls will only use what they need
     vars = user_vars.define_defaults()
+    vars["multithread_mode"] = "mpi"
     vars = user_vars.multiprocess_handling(vars)
     smiles_list = [(sanitized_smiles, "random_name")]
     smiles_to_convert_file, new_gen_folder_path = operations.save_generation_smi(
