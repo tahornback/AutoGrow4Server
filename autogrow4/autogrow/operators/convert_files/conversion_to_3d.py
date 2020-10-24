@@ -28,10 +28,12 @@ GYPSUM_GYPSUM_DIR = (
     + "gypsum_dl"
 )
 sys.path.extend([GYPSUM_DIR, CURRENT_DIR, GYPSUM_GYPSUM_DIR])
-
-import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
-from autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Start import prepare_molecules
-
+try:
+    import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
+    from autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Start import prepare_molecules
+except:
+    import autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
+    from autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Start import prepare_molecules
 
 
 class StdoutRedirection:
