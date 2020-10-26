@@ -73,6 +73,7 @@ def updateProperties():
     vars = user_vars.multiprocess_handling(vars)
     end = time.time()
     output += "multiprocess handling: {} ".format(str(end-start))
+    vars["max_variants_per_compound"] = 1
     start = time.time()
     smiles_list = [(sanitized_smiles, referred_mol_name)]
     smiles_to_convert_file, new_gen_folder_path = operations.save_generation_smi(
