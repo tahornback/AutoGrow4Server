@@ -89,7 +89,7 @@ def updateProperties():
     start = time.time()
     file_in_3d_folder = os.system("dir "+new_gen_folder_path+"/3D_SDFs/ > 3d_folder_contents.txt")
 
-    Chem.MolToMolBlock(mol)
+    rdkit_mol_sdf = Chem.MolToMolBlock(mol)
     end = time.time()
     output += "mol to mol block: {} ".format(str(end-start))
     start = time.time()
@@ -98,10 +98,11 @@ def updateProperties():
     print(folder_contents)
     total_end = time.time()
     output += "total process time: {}".format(total_end-total_start)
-    return output
-    # return "{}\n{}\n{}\n{}\n{}\n{}\n{}".format(mol2d, Chem.MolToMolBlock(mol), mol, smiles, sanitized_smiles, folder_contents,
-    #                                            open(new_gen_folder_path+"/3D_SDFs/random_name__input1.sdf").read()
-    #                                            )
+    # return output
+    return "{}\n{}\n{}\n{}\n{}\n{}\n{}".format(mol2d, rdkit_mol_sdf, mol, smiles, sanitized_smiles,
+                                               open(new_gen_folder_path+"/3D_SDFs/random_name__input1.sdf").read(),
+                                               output
+                                               )
     # Gypsum
     # RDKit
     # RDKit
