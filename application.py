@@ -1,6 +1,6 @@
 import time
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import os
 import autogrow4.autogrow.operators.operations as operations
 import autogrow4.autogrow.operators.convert_files.conversion_to_3d as conversion_to_3d
@@ -30,6 +30,22 @@ def env():
 def updateProperties():
     # Input: 2Dmol sdf as string
     # Return: Smiles file, new 2dmol, 3dmol, descriptors
+    # return obj {
+    #     smiles: { STRING },
+    #     mol2D: { STRING },
+    #     mol3D: { STRING },
+    #     mw: { INTEGER },
+    #     formula: { STRING },
+    #     donors: { INTEGER },
+    #     acceptors: { INTEGER },
+    #     rotatable: { INTEGER },
+    #     rings: { INTEGER },
+    #     tpsa: { DECIMAL },
+    #     logP: { DECIMAL },
+    #     heteroAtoms: { INTEGER },
+    #     heavyAtoms: { INTEGER },
+    #     complexity: { DECIMAL }
+    # }
     total_start = time.time()
     output = ""
     start = time.time()
@@ -103,37 +119,23 @@ def updateProperties():
     # return output
     threed_sdf = open(new_gen_folder_path+"/3D_SDFs/{}__input1.sdf".format(referred_mol_name)).read()
     os.remove(new_gen_folder_path+"/3D_SDFs/{}__input1.sdf".format(referred_mol_name))
-    mw = Chem.rdMolDescriptors.CalcExactMolWt(mol)
-    formula = Chem.rdMolDescriptors.CalcMolFormula(mol)
-    donors = Chem.rdMolDescriptors.CalcNumHBD(mol)
-    acceptors = Chem.rdMolDescriptors.CalcNumHBA(mol)
-    rotatable = Chem.rdMolDescriptors.CalcNumRotatableBonds(mol)
-    rings = Chem.rdMolDescriptors.CalcNumRings(mol)
-    tpsa = Chem.rdMolDescriptors.CalcTPSA(mol)
-    logP = Chem.Crippen.MolLogP(mol)
-    heteroAtoms = Chem.rdMolDescriptors.CalcNumHeteroatoms(mol)
-    heavyAtoms = mol.getNumHeavyAtoms()
-    complexity = Chem.GraphDescriptors.BertzCT(mol)
-    return "{}\n{}\n{}\n{}\n{}\n{}\n{}".format(mol2d, rdkit_mol_sdf, mol, smiles, sanitized_smiles,
-                                               threed_sdf,
-                                               output
-                                               )
-    # return obj {
-    #     smiles: { STRING },
-    #     mol2D: { STRING },
-    #     mol3D: { STRING },
-    #     mw: { INTEGER },
-    #     formula: { STRING },
-    #     donors: { INTEGER },
-    #     acceptors: { INTEGER },
-    #     rotatable: { INTEGER },
-    #     rings: { INTEGER },
-    #     tpsa: { DECIMAL },
-    #     logP: { DECIMAL },
-    #     heteroAtoms: { INTEGER },
-    #     heavyAtoms: { INTEGER },
-    #     complexity: { DECIMAL }
-    # }
+    dictionary = {
+        "mw": Chem.rdMolDescriptors.CalcExactMolWt(mol),
+        "formula": Chem.rdMolDescriptors.CalcMolFormula(mol),
+        "donors": Chem.rdMolDescriptors.CalcNumHBD(mol),
+        "acceptors": Chem.rdMolDescriptors.CalcNumHBA(mol),
+        "rotatable": Chem.rdMolDescriptors.CalcNumRotatableBonds(mol),
+        "rings": Chem.rdMolDescriptors.CalcNumRings(mol),
+        "tpsa": Chem.rdMolDescriptors.CalcTPSA(mol),
+        "logP": Chem.Crippen.MolLogP(mol),
+        "heteroAtoms": Chem.rdMolDescriptors.CalcNumHeteroatoms(mol),
+        "heavyAtoms": mol.getNumHeavyAtoms(),
+        "complexity": Chem.GraphDescriptors.BertzCT(mol),
+        "smiles": sanitized_smiles,
+        "mol2D": rdkit_mol_sdf,
+        "mol3D": threed_sdf
+    }
+    return jsonify(dictionary)
 
 
 @application.route("/execute")
