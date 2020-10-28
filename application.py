@@ -97,7 +97,7 @@ def updateProperties():
         "tpsa": Chem.rdMolDescriptors.CalcTPSA(mol),
         "logP": Chem.Crippen.MolLogP(mol),
         "heteroAtoms": Chem.rdMolDescriptors.CalcNumHeteroatoms(mol),
-        # "heavyAtoms": mol.getNumHeavyAtoms(),
+        "heavyAtoms": mol.GetNumHeavyAtoms(),
         "complexity": Chem.GraphDescriptors.BertzCT(mol),
         "smiles": sanitized_smiles,
         "mol2D": rdkit_mol_sdf,
