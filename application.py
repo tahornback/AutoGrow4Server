@@ -54,9 +54,8 @@ def updateProperties():
     mol2d = json.get("mol")
     referred_mol_name = "".join(random.choice(string.ascii_letters) for i in range(8))
     temp_file_name = referred_mol_name.join(".sdf")
-    temp_file = open(temp_file_name, "w")
-    temp_file.write(mol2d)
-    temp_file.close()
+    temp_file = open(temp_file_name, "w").write(mol2d).close()
+    os.remove(temp_file_name)
     supplier = Chem.SDMolSupplier(temp_file_name)
     mol = supplier[0]
     smiles = Chem.MolToSmiles(mol)
@@ -80,7 +79,6 @@ def updateProperties():
         None,
         )
     conversion_to_3d.convert_to_3d(vars, smiles_to_convert_file, new_gen_folder_path)
-    file_in_3d_folder = os.system("dir "+new_gen_folder_path+"/3D_SDFs/ > 3d_folder_contents.txt")
 
     rdkit_mol_sdf = Chem.MolToMolBlock(mol)
 
