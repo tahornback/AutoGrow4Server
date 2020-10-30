@@ -86,6 +86,7 @@ def updateProperties():
 
     # return output
     threed_sdf = open(new_gen_folder_path+"/3D_SDFs/{}__input1.sdf".format(referred_mol_name)).read()
+    threed_sdf = threed_sdf.split(">")[0].join("$$$$")
     os.remove(new_gen_folder_path+"/3D_SDFs/{}__input1.sdf".format(referred_mol_name))
     dictionary = {
         "mw": Chem.rdMolDescriptors.CalcExactMolWt(mol),
