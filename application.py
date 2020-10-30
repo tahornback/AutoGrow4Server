@@ -54,7 +54,7 @@ def updateProperties():
         os.makedirs(os.getcwd()+smiles_directory+'/generation_0')
     json = request.get_json()
     mol2d = json.get("mol")
-    referred_mol_name = "".join(random.choice(string.ascii_letters) for i in range(8)).replace(".", "")
+    referred_mol_name = "".join(random.choice(string.ascii_letters) for i in range(8))
     temp_file_name = referred_mol_name.join(".sdf")
     temp_file = open(temp_file_name, "w")
     temp_file.write(mol2d)
