@@ -86,7 +86,7 @@ def updateProperties():
 
     # return output
     threed_sdf = open(new_gen_folder_path+"/3D_SDFs/{}__input1.sdf".format(referred_mol_name)).read()
-    threed_sdf = threed_sdf.split(">")[0].join("$$$$")
+    threed_sdf = threed_sdf.split(">")[0]+"$$$$"
     os.remove(new_gen_folder_path+"/3D_SDFs/{}__input1.sdf".format(referred_mol_name))
     dictionary = {
         "mw": Chem.rdMolDescriptors.CalcExactMolWt(mol),
@@ -105,6 +105,12 @@ def updateProperties():
         "mol3D": threed_sdf
     }
     return jsonify(dictionary)
+
+
+@application.route("/submitDocking")
+def dock():
+    json = request.get_json()
+    smiles = json.get("smiles")
 
 
 @application.route("/execute")
