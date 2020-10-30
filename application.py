@@ -46,10 +46,11 @@ def updateProperties():
     #     heavyAtoms: { INTEGER },
     #     complexity: { DECIMAL }
     # }
-    if not os.path.exists(os.getcwd()+'/smiles_dir'):
-        os.makedirs(os.getcwd()+'/smiles_dir')
-    if not os.path.exists(os.getcwd()+'/smiles_dir/generation_0'):
-        os.makedirs(os.getcwd()+'/smiles_dir/generation_0')
+    smiles_directory = "/smiles_dir"
+    if not os.path.exists(os.getcwd()+smiles_directory):
+        os.makedirs(os.getcwd()+smiles_directory)
+    if not os.path.exists(os.getcwd()+smiles_directory+'/generation_0'):
+        os.makedirs(os.getcwd()+smiles_directory+'/generation_0')
     json = request.get_json()
     mol2d = json.get("mol")
     referred_mol_name = "".join(random.choice(string.ascii_letters) for i in range(8))
@@ -73,7 +74,7 @@ def updateProperties():
     vars["max_variants_per_compound"] = 1
     smiles_list = [(sanitized_smiles, referred_mol_name)]
     smiles_to_convert_file, new_gen_folder_path = operations.save_generation_smi(
-        os.getcwd()+"/smiles_dir/",
+        os.getcwd()+smiles_directory+"/",
         0,
         smiles_list,
         None,
@@ -81,11 +82,12 @@ def updateProperties():
     conversion_to_3d.convert_to_3d(vars, smiles_to_convert_file, new_gen_folder_path)
 
     rdkit_mol_sdf = Chem.MolToMolBlock(mol)
+    threed_sdf_file = new_gen_folder_path+"/3D_SDFs/{}__input1.sdf".format(referred_mol_name)
 
     # return output
-    threed_sdf = open(new_gen_folder_path+"/3D_SDFs/{}__input1.sdf".format(referred_mol_name)).read()
+    threed_sdf = open(threed_sdf_file).read()
     threed_sdf = threed_sdf.split(">")[0].join("$$$$")
-    os.remove(new_gen_folder_path+"/3D_SDFs/{}__input1.sdf".format(referred_mol_name))
+    os.remove(threed_sdf_file)
     dictionary = {
         "mw": Chem.rdMolDescriptors.CalcExactMolWt(mol),
         "formula": Chem.rdMolDescriptors.CalcMolFormula(mol),
