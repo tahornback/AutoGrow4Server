@@ -2,6 +2,7 @@ import time
 
 from flask import Flask, request, jsonify
 import os
+import autogrow4.autogrow.autogrow_main_execute as main_execute
 import autogrow4.autogrow.operators.operations as operations
 import autogrow4.autogrow.operators.convert_files.conversion_to_3d as conversion_to_3d
 import autogrow4.autogrow.user_vars as user_vars
@@ -55,7 +56,9 @@ def updateProperties():
     mol2d = json.get("mol")
     referred_mol_name = "".join(random.choice(string.ascii_letters) for i in range(8))
     temp_file_name = referred_mol_name.join(".sdf")
-    temp_file = open(temp_file_name, "w").write(mol2d).close()
+    temp_file = open(temp_file_name, "w")
+    temp_file.write(mol2d)
+    temp_file.close()
     os.remove(temp_file_name)
     supplier = Chem.SDMolSupplier(temp_file_name)
     mol = supplier[0]
@@ -105,6 +108,17 @@ def updateProperties():
         "mol3D": threed_sdf
     }
     return jsonify(dictionary)
+
+
+@application.route("/submitDocking")
+def dock():
+
+    #Save input accordingly
+
+    #Call main_execute with files in right place/vars set up correctly
+
+    #Read saved files, return as prescribed
+    pass
 
 
 @application.route("/execute")
