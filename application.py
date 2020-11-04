@@ -5,11 +5,14 @@ import os
 import autogrow4.autogrow.operators.operations as operations
 import autogrow4.autogrow.operators.convert_files.conversion_to_3d as conversion_to_3d
 import autogrow4.autogrow.user_vars as user_vars
+import autogrow4.autogrow.autogrow_main_execute as autogrow_main_execute
+import autogrow4.autogrow.docking.execute_docking as execute_docking
 operations.test()
 from rdkit import Chem
 import random
 import string
-
+import tempfile
+import base64
 application = Flask(__name__)
 
 
@@ -107,10 +110,67 @@ def updateProperties():
     return jsonify(dictionary)
 
 
-@application.route("/submitDocking")
+@application.route("/submitDocking", methods=["POST"])
 def dock():
+    # {
+    #     "argList":"`--receptor receptor.pdbqt --ligand ligand.pdbqt --energy_range ${energy_range} --center_x ${receptorX} --center_y ${receptorY} --center_z ${receptorZ} --size_x ${sizeX} --size_y ${sizeY} --size_z ${sizeZ} --out output`",
+    #     "inputFile":[
+    #         {
+    #             "name":"`receptor.pdbqt`",
+    #             "contents":"encodedReceptor"
+    #         },
+    #         {
+    #             "name":"`ligand.pdbqt`",
+    #             "contents":"encodedLigand"
+    #         }
+    #     ]
+    # }
+    suffix = "".join(random.choice(string.ascii_letters) for i in range(8))
+    temp_folder = "Output_".join(suffix)
+    os.mkdir(os.getcwd() + temp_folder)
+    receptor_temp_file_name = "receptor_".join(suffix + ".pdbqt")
+    receptor_temp_file = open(receptor_temp_file_name, "w")
+    ligand_temp_file_name = "ligand_".join(suffix + ".pdbqt")
+    ligand_temp_file = open(ligand_temp_file_name, "w")
+
     json = request.get_json()
-    smiles = json.get("smiles")
+    inputFile = json.get("inputFile")
+    encodedReceptor = inputFile[0].get("contents")
+    encodedLigand = inputFile[1].get("contents")
+
+    receptor_temp_file.write(base64.b64decode(encodedReceptor).decode("utf-8"))
+    ligand_temp_file.write(base64.b64decode(encodedLigand).decode("utf-8"))
+    receptor_temp_file.close()
+    ligand_temp_file.close()
+
+    args = json.get("argList").split(" ")
+    vars = user_vars.define_defaults()
+    # add opts from sample_submit_autogrow.json to vars, like mgltools_directory etc.
+    # some of these will come from json.get("argList")
+    vars["mgltools_directory"] = "/mgltools_x86_64Linux2_1.5.6/"
+    vars["center_x"] = args[args.index("--center_x")+1]
+    vars["center_y"] = args[args.index("--center_y")+1]
+    vars["center_z"] = args[args.index("--center_z")+1]
+    vars["size_x"] = args[args.index("--size_x")+1]
+    vars["size_y"] = args[args.index("--size_y")+1]
+    vars["size_z"] = args[args.index("--size_z")+1]
+    vars["output_directory"] = temp_folder
+    vars["filename_of_receptor"] = os.getcwd() + receptor_temp_file_name
+    vars ["source_compound_file"] = os.getcwd() + ligand_temp_file_name
+    # what is energy range??
+
+
+    current_generation_dir = vars["output_directory"] + "generation_{}{}".format(0, os.sep)
+
+
+    # Should probably run user_vars.check_for_required_inputs(vars)
+    # just to make sure we got everything
+    user_vars.check_for_required_inputs(vars)
+
+    # autogrow_main_execute.main_execute(vars)
+    execute_docking.run_docking_common(vars, 0, current_generation_dir, None)
+
+    return "didnt fail"
 
 
 @application.route("/execute")
