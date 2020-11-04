@@ -56,7 +56,7 @@ def updateProperties():
     json = request.get_json()
     mol2d = json.get("mol")
     referred_mol_name = "".join(random.choice(string.ascii_letters) for i in range(8))
-    temp_file_name = referred_mol_name.join(".sdf")
+    temp_file_name = referred_mol_name + ".sdf"
     temp_file = open(temp_file_name, "w")
     temp_file.write(mol2d)
     temp_file.close()
@@ -126,11 +126,11 @@ def dock():
     #     ]
     # }
     suffix = "".join(random.choice(string.ascii_letters) for i in range(8))
-    temp_folder = "/Output_".join(suffix)
+    temp_folder = "/Output_{}".format(suffix)
     os.mkdir(os.getcwd() + "/" + temp_folder)
-    receptor_temp_file_name = "receptor_".join(suffix + ".pdbqt")
+    receptor_temp_file_name = "receptor_{}".format(suffix + ".pdbqt")
     receptor_temp_file = open(receptor_temp_file_name, "w")
-    ligand_temp_file_name = "ligand_".join(suffix + ".pdbqt")
+    ligand_temp_file_name = "ligand_{}".format(suffix + ".pdbqt")
     ligand_temp_file = open(ligand_temp_file_name, "w")
 
     json = request.get_json()
