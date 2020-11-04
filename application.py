@@ -168,6 +168,15 @@ def dock():
     # what is energy range??
 
     current_generation_dir = vars["output_directory"] + "generation_{}{}".format(0, os.sep)
+    os.mkdir(current_generation_dir)
+    os.mkdir(current_generation_dir + "PDBs/")
+    ligand_temp_file_name = "ligand_{}".format(suffix + ".pdbqt")
+    ligand_temp_file = open(current_generation_dir + "PDBs/" + ligand_temp_file_name, "w")
+    ligand_file_data = base64.b64decode(encodedLigand).decode("utf-8")
+    ligand_temp_file.write(ligand_file_data)
+    ligand_temp_file.close()
+
+
 
     # Should probably run user_vars.check_for_required_inputs(vars)
     # just to make sure we got everything
