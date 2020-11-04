@@ -141,8 +141,8 @@ def dock():
     receptor_file_data = base64.b64decode(encodedReceptor).decode("utf-8")
     ligand_file_data = base64.b64decode(encodedLigand).decode("utf-8")
 
-    print(receptor_file_data)
-    print(ligand_file_data)
+    # print(receptor_file_data)
+    # print(ligand_file_data)
 
     receptor_temp_file.write(receptor_file_data)
     ligand_temp_file.write(ligand_file_data)
