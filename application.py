@@ -126,8 +126,8 @@ def dock():
     #     ]
     # }
     suffix = "".join(random.choice(string.ascii_letters) for i in range(8))
-    temp_folder = "Output_".join(suffix)
-    os.mkdir(os.getcwd() + temp_folder)
+    temp_folder = "/Output_".join(suffix)
+    os.mkdir(os.getcwd() + "/" + temp_folder)
     receptor_temp_file_name = "receptor_".join(suffix + ".pdbqt")
     receptor_temp_file = open(receptor_temp_file_name, "w")
     ligand_temp_file_name = "ligand_".join(suffix + ".pdbqt")
@@ -154,9 +154,9 @@ def dock():
     vars["size_x"] = args[args.index("--size_x")+1]
     vars["size_y"] = args[args.index("--size_y")+1]
     vars["size_z"] = args[args.index("--size_z")+1]
-    vars["output_directory"] = temp_folder
-    vars["filename_of_receptor"] = os.getcwd() + receptor_temp_file_name
-    vars ["source_compound_file"] = os.getcwd() + ligand_temp_file_name
+    vars["output_directory"] = os.getcwd() + temp_folder
+    vars["filename_of_receptor"] = os.getcwd() + "/" + receptor_temp_file_name
+    vars ["source_compound_file"] = os.getcwd() + "/" + ligand_temp_file_name
     # what is energy range??
 
 
