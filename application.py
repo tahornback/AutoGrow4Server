@@ -171,7 +171,7 @@ def dock():
 
     # Should probably run user_vars.check_for_required_inputs(vars)
     # just to make sure we got everything
-    user_vars.check_for_required_inputs(vars)
+    # user_vars.check_for_required_inputs(vars)
 
     # autogrow_main_execute.main_execute(vars)
     execute_docking.run_docking_common(vars, 0, current_generation_dir, None)
