@@ -155,8 +155,9 @@ def dock():
     vars["size_y"] = args[args.index("--size_y")+1]
     vars["size_z"] = args[args.index("--size_z")+1]
     vars["output_directory"] = os.getcwd() + temp_folder
+    vars["root_output_folder"] = os.getcwd() + temp_folder
     vars["filename_of_receptor"] = os.getcwd() + "/" + receptor_temp_file_name
-    vars ["source_compound_file"] = os.getcwd() + "/" + ligand_temp_file_name
+    vars["source_compound_file"] = os.getcwd() + "/" + ligand_temp_file_name
     # what is energy range??
 
 
