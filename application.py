@@ -138,8 +138,14 @@ def dock():
     encodedReceptor = inputFile[0].get("contents")
     encodedLigand = inputFile[1].get("contents")
 
-    receptor_temp_file.write(base64.b64decode(encodedReceptor).decode("utf-8"))
-    ligand_temp_file.write(base64.b64decode(encodedLigand).decode("utf-8"))
+    receptor_file_data = base64.b64decode(encodedReceptor).decode("utf-8")
+    ligand_file_data = base64.b64decode(encodedLigand).decode("utf-8")
+
+    print(receptor_file_data)
+    print(ligand_file_data)
+
+    receptor_temp_file.write(receptor_file_data)
+    ligand_temp_file.write(ligand_file_data)
     receptor_temp_file.close()
     ligand_temp_file.close()
 
@@ -148,21 +154,20 @@ def dock():
     # add opts from sample_submit_autogrow.json to vars, like mgltools_directory etc.
     # some of these will come from json.get("argList")
     vars["mgltools_directory"] = "/mgltools_x86_64Linux2_1.5.6/"
-    vars["center_x"] = args[args.index("--center_x")+1]
-    vars["center_y"] = args[args.index("--center_y")+1]
-    vars["center_z"] = args[args.index("--center_z")+1]
-    vars["size_x"] = args[args.index("--size_x")+1]
-    vars["size_y"] = args[args.index("--size_y")+1]
-    vars["size_z"] = args[args.index("--size_z")+1]
+    vars["center_x"] = float(args[args.index("--center_x")+1])
+    vars["center_y"] = float(args[args.index("--center_y")+1])
+    vars["center_z"] = float(args[args.index("--center_z")+1])
+    vars["size_x"] = float(args[args.index("--size_x")+1])
+    vars["size_y"] = float(args[args.index("--size_y")+1])
+    vars["size_z"] = float(args[args.index("--size_z")+1])
     vars["output_directory"] = os.getcwd() + temp_folder
     vars["root_output_folder"] = os.getcwd() + temp_folder
     vars["filename_of_receptor"] = os.getcwd() + "/" + receptor_temp_file_name
     vars["source_compound_file"] = os.getcwd() + "/" + ligand_temp_file_name
+    print(vars)
     # what is energy range??
 
-
     current_generation_dir = vars["output_directory"] + "generation_{}{}".format(0, os.sep)
-
 
     # Should probably run user_vars.check_for_required_inputs(vars)
     # just to make sure we got everything
