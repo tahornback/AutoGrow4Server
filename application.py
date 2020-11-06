@@ -187,7 +187,9 @@ def dock():
     # autogrow_main_execute.main_execute(vars)
     execute_docking.run_docking_common(vars, 0, current_generation_dir, None)
 
-    return "didnt fail"
+    os.system("ls -lR > filetree.txt")
+    return open("filetree.txt", "r").read()
+
 
 
 @application.route("/execute")

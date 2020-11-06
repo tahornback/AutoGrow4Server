@@ -203,8 +203,8 @@ def run_docking_common(vars, current_gen_int, current_generation_dir,
     # print("")
     # print("Completed Ranking and Saving results")
     # print("")
-    os.system("ls -lR > filetree.txt")
-    return open("filetree.txt", "r").read()
+
+    return "didnt fail"
 
 
 def lig_convert_multithread(docking_object, pdb):
