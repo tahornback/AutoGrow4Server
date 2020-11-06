@@ -169,7 +169,7 @@ def dock():
     print(vars)
     # what is energy range??
 
-    current_generation_dir = vars["output_directory"] + "generation_{}{}".format(0, os.sep)
+    current_generation_dir = vars["output_directory"] + "/" + "generation_{}{}".format(0, os.sep)
     os.mkdir(current_generation_dir)
     os.mkdir(current_generation_dir + "PDBs/")
     ligand_temp_file_name = "ligand_{}".format(suffix + ".pdbqt")
@@ -188,7 +188,7 @@ def dock():
     execute_docking.run_docking_common(vars, 0, current_generation_dir, None)
 
     os.system("ls -lR > filetree.txt")
-    return open("filetree.txt", "r").read()
+    return open("filetree.txt", "r").read() + "{}".format(open(current_generation_dir + "PDBs/" + ligand_temp_file_name+"_docking_output.txt", "r").read())
 
 
 
