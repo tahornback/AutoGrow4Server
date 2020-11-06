@@ -151,6 +151,7 @@ def dock():
 
     args = json.get("argList").split(" ")
     vars = user_vars.define_defaults()
+    vars = user_vars.multiprocess_handling(vars)
     # add opts from sample_submit_autogrow.json to vars, like mgltools_directory etc.
     # some of these will come from json.get("argList")
     vars["mgltools_directory"] = "/mgltools_x86_64Linux2_1.5.6/"
