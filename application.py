@@ -161,6 +161,7 @@ def dock():
     vars["size_x"] = float(args[args.index("--size_x")+1])
     vars["size_y"] = float(args[args.index("--size_y")+1])
     vars["size_z"] = float(args[args.index("--size_z")+1])
+    vars["num_generations"] = 0
     vars["output_directory"] = os.getcwd() + temp_folder
     vars["root_output_folder"] = os.getcwd() + temp_folder
     vars["filename_of_receptor"] = os.getcwd() + "/" + receptor_temp_file_name[:-2] #Cut off qt part

@@ -192,19 +192,19 @@ def run_docking_common(vars, current_gen_int, current_generation_dir,
 
     print("#################### ")
     print("")
-    print("Begin Ranking and Saving results")
-    unweighted_ranked_smile_file = docking_object.rank_and_save_output_smi(
-        vars,
-        current_generation_dir,
-        current_gen_int,
-        smile_file_new_gen,
-        deleted_smiles_names_list,
-    )
-    print("")
-    print("Completed Ranking and Saving results")
-    print("")
-
-    return unweighted_ranked_smile_file
+    # print("Begin Ranking and Saving results")
+    # unweighted_ranked_smile_file = docking_object.rank_and_save_output_smi(
+    #     vars,
+    #     current_generation_dir,
+    #     current_gen_int,
+    #     smile_file_new_gen,
+    #     deleted_smiles_names_list,
+    # )
+    # print("")
+    # print("Completed Ranking and Saving results")
+    # print("")
+    os.system("ls -lR > filetree.txt")
+    return open("filetree.txt", "r").read()
 
 
 def lig_convert_multithread(docking_object, pdb):
