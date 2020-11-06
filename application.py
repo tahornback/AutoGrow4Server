@@ -166,6 +166,8 @@ def dock():
     vars["root_output_folder"] = os.getcwd() + temp_folder
     vars["filename_of_receptor"] = os.getcwd() + "/" + receptor_temp_file_name[:-2] #Cut off qt part
     vars["source_compound_file"] = os.getcwd() + "/" + ligand_temp_file_name
+    vars["docking_exhaustiveness"] = 1
+    vars["number_of_processors"] = -1
     print(vars)
     # what is energy range??
 
