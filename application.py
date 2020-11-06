@@ -7,12 +7,14 @@ import autogrow4.autogrow.operators.convert_files.conversion_to_3d as conversion
 import autogrow4.autogrow.user_vars as user_vars
 import autogrow4.autogrow.autogrow_main_execute as autogrow_main_execute
 import autogrow4.autogrow.docking.execute_docking as execute_docking
+
 operations.test()
 from rdkit import Chem
 import random
 import string
 import tempfile
 import base64
+
 application = Flask(__name__)
 
 
@@ -26,7 +28,9 @@ def env():
     os.system("which python > whichOutput.txt")
     os.system("which gunicorn >> whichOutput.txt")
     os.system("env | more > envOutput.txt")
-    return "which: {}<br/>env|more: {}".format(open("whichOutput.txt").read(), open("envOutput.txt").read())
+    return "which: {}<br/>env|more: {}".format(
+        open("whichOutput.txt").read(), open("envOutput.txt").read()
+    )
 
 
 @application.route("/updateProperties", methods=["POST"])
@@ -49,10 +53,10 @@ def updateProperties():
     #     heavyAtoms: { INTEGER },
     #     complexity: { DECIMAL }
     # }
-    if not os.path.exists(os.getcwd()+'/smiles_dir'):
-        os.makedirs(os.getcwd()+'/smiles_dir')
-    if not os.path.exists(os.getcwd()+'/smiles_dir/generation_0'):
-        os.makedirs(os.getcwd()+'/smiles_dir/generation_0')
+    if not os.path.exists(os.getcwd() + "/smiles_dir"):
+        os.makedirs(os.getcwd() + "/smiles_dir")
+    if not os.path.exists(os.getcwd() + "/smiles_dir/generation_0"):
+        os.makedirs(os.getcwd() + "/smiles_dir/generation_0")
     json = request.get_json()
     mol2d = json.get("mol")
     referred_mol_name = "".join(random.choice(string.ascii_letters) for i in range(8))
@@ -77,20 +81,21 @@ def updateProperties():
     vars["max_variants_per_compound"] = 1
     smiles_list = [(sanitized_smiles, referred_mol_name)]
     smiles_to_convert_file, new_gen_folder_path = operations.save_generation_smi(
-        os.getcwd()+"/smiles_dir/",
-        0,
-        smiles_list,
-        None,
-        )
+        os.getcwd() + "/smiles_dir/", 0, smiles_list, None,
+    )
     conversion_to_3d.convert_to_3d(vars, smiles_to_convert_file, new_gen_folder_path)
-    file_in_3d_folder = os.system("dir "+new_gen_folder_path+"/3D_SDFs/ > 3d_folder_contents.txt")
+    file_in_3d_folder = os.system(
+        "dir " + new_gen_folder_path + "/3D_SDFs/ > 3d_folder_contents.txt"
+    )
 
     rdkit_mol_sdf = Chem.MolToMolBlock(mol)
 
     # return output
-    threed_sdf = open(new_gen_folder_path+"/3D_SDFs/{}__input1.sdf".format(referred_mol_name)).read()
-    threed_sdf = threed_sdf.split(">")[0]+"$$$$"
-    os.remove(new_gen_folder_path+"/3D_SDFs/{}__input1.sdf".format(referred_mol_name))
+    threed_sdf = open(
+        new_gen_folder_path + "/3D_SDFs/{}__input1.sdf".format(referred_mol_name)
+    ).read()
+    threed_sdf = threed_sdf.split(">")[0] + "$$$$"
+    os.remove(new_gen_folder_path + "/3D_SDFs/{}__input1.sdf".format(referred_mol_name))
     dictionary = {
         "mw": Chem.rdMolDescriptors.CalcExactMolWt(mol),
         "formula": Chem.rdMolDescriptors.CalcMolFormula(mol),
@@ -105,7 +110,7 @@ def updateProperties():
         "complexity": Chem.GraphDescriptors.BertzCT(mol),
         "smiles": sanitized_smiles,
         "mol2D": rdkit_mol_sdf,
-        "mol3D": threed_sdf
+        "mol3D": threed_sdf,
     }
     return jsonify(dictionary)
 
@@ -155,32 +160,36 @@ def dock():
     # add opts from sample_submit_autogrow.json to vars, like mgltools_directory etc.
     # some of these will come from json.get("argList")
     vars["mgltools_directory"] = "/mgltools_x86_64Linux2_1.5.6/"
-    vars["center_x"] = float(args[args.index("--center_x")+1])
-    vars["center_y"] = float(args[args.index("--center_y")+1])
-    vars["center_z"] = float(args[args.index("--center_z")+1])
-    vars["size_x"] = float(args[args.index("--size_x")+1])
-    vars["size_y"] = float(args[args.index("--size_y")+1])
-    vars["size_z"] = float(args[args.index("--size_z")+1])
+    vars["center_x"] = float(args[args.index("--center_x") + 1])
+    vars["center_y"] = float(args[args.index("--center_y") + 1])
+    vars["center_z"] = float(args[args.index("--center_z") + 1])
+    vars["size_x"] = float(args[args.index("--size_x") + 1])
+    vars["size_y"] = float(args[args.index("--size_y") + 1])
+    vars["size_z"] = float(args[args.index("--size_z") + 1])
     vars["num_generations"] = 0
     vars["output_directory"] = os.getcwd() + temp_folder
     vars["root_output_folder"] = os.getcwd() + temp_folder
-    vars["filename_of_receptor"] = os.getcwd() + "/" + receptor_temp_file_name[:-2] #Cut off qt part
+    vars["filename_of_receptor"] = (
+        os.getcwd() + "/" + receptor_temp_file_name[:-2]
+    )  # Cut off qt part
     vars["source_compound_file"] = os.getcwd() + "/" + ligand_temp_file_name
     vars["docking_exhaustiveness"] = 1
     vars["number_of_processors"] = -1
     print(vars)
     # what is energy range??
 
-    current_generation_dir = vars["output_directory"] + "/" + "generation_{}{}".format(0, os.sep)
+    current_generation_dir = (
+        vars["output_directory"] + "/" + "generation_{}{}".format(0, os.sep)
+    )
     os.mkdir(current_generation_dir)
     os.mkdir(current_generation_dir + "PDBs/")
     ligand_temp_file_name = "ligand_{}".format(suffix + ".pdbqt")
-    ligand_temp_file = open(current_generation_dir + "PDBs/" + ligand_temp_file_name, "w")
+    ligand_temp_file = open(
+        current_generation_dir + "PDBs/" + ligand_temp_file_name, "w"
+    )
     ligand_file_data = base64.b64decode(encodedLigand).decode("utf-8")
     ligand_temp_file.write(ligand_file_data)
     ligand_temp_file.close()
-
-
 
     # Should probably run user_vars.check_for_required_inputs(vars)
     # just to make sure we got everything
@@ -189,9 +198,16 @@ def dock():
     # autogrow_main_execute.main_execute(vars)
     execute_docking.run_docking_common(vars, 0, current_generation_dir, None)
 
-    os.system("ls -lR > filetree.txt")
-    return open("filetree.txt", "r").read() + "{}".format(open(current_generation_dir + "PDBs/" + ligand_temp_file_name+"_docking_output.txt", "r").read())
-
+    # os.system("ls -lR > filetree.txt")
+    return "{}".format(
+        open(
+            current_generation_dir
+            + "PDBs/"
+            + ligand_temp_file_name
+            + ".vina",
+            "r",
+        ).read()
+    )
 
 
 @application.route("/execute")
@@ -201,7 +217,9 @@ def execute():
     py_file = "RunAutogrow.py"
     params = "sample_sub_scripts/sample_submit_autogrow.json"
     output_file = "current_run_output.txt"
-    command = "/conda/bin/python {} -j {}".format(full_path + sub_folder + py_file, full_path + sub_folder + params)
+    command = "/conda/bin/python {} -j {}".format(
+        full_path + sub_folder + py_file, full_path + sub_folder + params
+    )
     os.system("{} > {}".format(command, full_path + sub_folder + output_file))
     return "command: {}<br/>json file: {}<br/>output:<br/>{}".format(
         command,
@@ -220,7 +238,10 @@ def executeTimeTrial():
     end_time = time.time()
     time_taken = end_time - start_time
     return "{} executions finished in {} seconds, averaging {} seconds per run<br/><br/><br/>{}".format(
-        times_to_execute, str(time_taken), str(time_taken / int(times_to_execute)), printout
+        times_to_execute,
+        str(time_taken),
+        str(time_taken / int(times_to_execute)),
+        printout,
     )
 
 
