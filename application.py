@@ -175,6 +175,7 @@ def dock():
     vars["source_compound_file"] = os.getcwd() + "/" + ligand_temp_file_name
     # vars["docking_exhaustiveness"] = 1
     vars["number_of_processors"] = -1
+    vars["docking_num_modes"] = 1
     print(vars)
     # what is energy range??
 
