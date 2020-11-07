@@ -200,15 +200,22 @@ def dock():
     execute_docking.run_docking_common(vars, 0, current_generation_dir, None)
 
     # os.system("ls -lR > filetree.txt")
-    return "{}".format(
-        open(
+    try:
+        return open(
             current_generation_dir
             + "PDBs/"
             + ligand_temp_file_name
             + ".vina",
             "r",
-        ).read()
-    )
+            ).read()
+    except:
+        return open(
+                current_generation_dir
+                + "PDBs/"
+                + ligand_temp_file_name
+                + "_docking_output.txt",
+                "r",
+            ).read()
 
 
 @application.route("/execute")
