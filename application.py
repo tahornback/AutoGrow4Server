@@ -189,7 +189,7 @@ def dock():
     execute_docking.run_docking_common(vars, 0, current_generation_dir, None)
 
     try:
-        return open(
+        file_contents = open(
             current_generation_dir
             + "PDBs/"
             + ligand_temp_file_name
@@ -197,13 +197,17 @@ def dock():
             "r",
             ).read()
     except:
-        return open(
-                current_generation_dir
-                + "PDBs/"
-                + ligand_temp_file_name
-                + "_docking_output.txt",
-                "r",
-            ).read()
+        file_contents = open(
+            current_generation_dir
+            + "PDBs/"
+            + ligand_temp_file_name
+            + "_docking_output.txt",
+            "r",
+                ).read()
+    shutil.rmtree(vars["output_directory"])
+    os.remove(CWD + "/" + ligand_temp_file_name)
+    os.remove(CWD + "/" + receptor_temp_file_name)
+    return file_contents
 
 
 @application.route("/execute")
