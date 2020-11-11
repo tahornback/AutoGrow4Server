@@ -169,7 +169,7 @@ def dock():
             CWD + "/" + receptor_temp_file_name[:-2]
     )  # Cut off qt part
     vars["source_compound_file"] = CWD + "/" + ligand_temp_file_name
-    # vars["docking_exhaustiveness"] = 1
+    vars["docking_exhaustiveness"] = 1
     vars["number_of_processors"] = -1
     vars["docking_num_modes"] = 1
 
