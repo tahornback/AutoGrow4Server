@@ -5,14 +5,12 @@ import os
 import autogrow4.autogrow.operators.operations as operations
 import autogrow4.autogrow.operators.convert_files.conversion_to_3d as conversion_to_3d
 import autogrow4.autogrow.user_vars as user_vars
-import autogrow4.autogrow.autogrow_main_execute as autogrow_main_execute
 import autogrow4.autogrow.docking.execute_docking as execute_docking
+import shutil
 
-operations.test()
 from rdkit import Chem
 import random
 import string
-import tempfile
 import base64
 
 application = Flask(__name__)
@@ -53,10 +51,11 @@ def updateProperties():
     #     heavyAtoms: { INTEGER },
     #     complexity: { DECIMAL }
     # }
-    if not os.path.exists(os.getcwd() + "/smiles_dir"):
-        os.makedirs(os.getcwd() + "/smiles_dir")
-    if not os.path.exists(os.getcwd() + "/smiles_dir/generation_0"):
-        os.makedirs(os.getcwd() + "/smiles_dir/generation_0")
+    CWD = os.getcwd()
+    if not os.path.exists(CWD + "/smiles_dir"):
+        os.makedirs(CWD + "/smiles_dir")
+    if not os.path.exists(CWD + "/smiles_dir/generation_0"):
+        os.makedirs(CWD + "/smiles_dir/generation_0")
     json = request.get_json()
     mol2d = json.get("mol")
     referred_mol_name = "".join(random.choice(string.ascii_letters) for i in range(8))
@@ -70,8 +69,8 @@ def updateProperties():
 
     sanitized_smiles = operations.test_source_smiles_convert_update_properties(smiles)
 
-    # if smiles != sanitized_smiles:
-    #     return "smiles did not sanitize"
+    if smiles != sanitized_smiles:
+        return "smiles did not sanitize"
 
     # vars (in this method) will contain a lot of stuff we don't care about.  That is okay because
     # the method calls will only use what they need
@@ -81,12 +80,9 @@ def updateProperties():
     vars["max_variants_per_compound"] = 1
     smiles_list = [(sanitized_smiles, referred_mol_name)]
     smiles_to_convert_file, new_gen_folder_path = operations.save_generation_smi(
-        os.getcwd() + "/smiles_dir/", 0, smiles_list, None,
+        CWD + "/smiles_dir/", 0, smiles_list, None,
     )
     conversion_to_3d.convert_to_3d(vars, smiles_to_convert_file, new_gen_folder_path)
-    file_in_3d_folder = os.system(
-        "dir " + new_gen_folder_path + "/3D_SDFs/ > 3d_folder_contents.txt"
-    )
 
     rdkit_mol_sdf = Chem.MolToMolBlock(mol)
 
@@ -96,6 +92,7 @@ def updateProperties():
     ).read()
     threed_sdf = threed_sdf.split(">")[0] + "$$$$"
     os.remove(new_gen_folder_path + "/3D_SDFs/{}__input1.sdf".format(referred_mol_name))
+
     dictionary = {
         "mw": Chem.rdMolDescriptors.CalcExactMolWt(mol),
         "formula": Chem.rdMolDescriptors.CalcMolFormula(mol),
@@ -130,9 +127,10 @@ def dock():
     #         }
     #     ]
     # }
+    CWD = os.getcwd()
     suffix = "".join(random.choice(string.ascii_letters) for i in range(8))
     temp_folder = "/Output_{}".format(suffix)
-    os.mkdir(os.getcwd() + "/" + temp_folder)
+    os.mkdir(CWD + "/" + temp_folder)
     receptor_temp_file_name = "receptor_{}".format(suffix + ".pdbqt")
     receptor_temp_file = open(receptor_temp_file_name, "w")
     ligand_temp_file_name = "ligand_{}".format(suffix + ".pdbqt")
@@ -146,9 +144,6 @@ def dock():
     receptor_file_data = base64.b64decode(encodedReceptor).decode("utf-8")
     ligand_file_data = base64.b64decode(encodedLigand).decode("utf-8")
 
-    # print(receptor_file_data)
-    # print(ligand_file_data)
-
     receptor_temp_file.write(receptor_file_data)
     ligand_temp_file.write(ligand_file_data)
     receptor_temp_file.close()
@@ -157,6 +152,7 @@ def dock():
     args = json.get("argList").split(" ")
     vars = user_vars.define_defaults()
     vars = user_vars.multiprocess_handling(vars)
+
     # add opts from sample_submit_autogrow.json to vars, like mgltools_directory etc.
     # some of these will come from json.get("argList")
     vars["mgltools_directory"] = "/mgltools_x86_64Linux2_1.5.6/"
@@ -167,17 +163,15 @@ def dock():
     vars["size_y"] = float(args[args.index("--size_y") + 1])
     vars["size_z"] = float(args[args.index("--size_z") + 1])
     vars["num_generations"] = 0
-    vars["output_directory"] = os.getcwd() + temp_folder
-    vars["root_output_folder"] = os.getcwd() + temp_folder
+    vars["output_directory"] = CWD + temp_folder
+    vars["root_output_folder"] = CWD + temp_folder
     vars["filename_of_receptor"] = (
-        os.getcwd() + "/" + receptor_temp_file_name[:-2]
+            CWD + "/" + receptor_temp_file_name[:-2]
     )  # Cut off qt part
-    vars["source_compound_file"] = os.getcwd() + "/" + ligand_temp_file_name
+    vars["source_compound_file"] = CWD + "/" + ligand_temp_file_name
     # vars["docking_exhaustiveness"] = 1
     vars["number_of_processors"] = -1
     vars["docking_num_modes"] = 1
-    print(vars)
-    # what is energy range??
 
     current_generation_dir = (
         vars["output_directory"] + "/" + "generation_{}{}".format(0, os.sep)
@@ -192,16 +186,10 @@ def dock():
     ligand_temp_file.write(ligand_file_data)
     ligand_temp_file.close()
 
-    # Should probably run user_vars.check_for_required_inputs(vars)
-    # just to make sure we got everything
-    # user_vars.check_for_required_inputs(vars)
-
-    # autogrow_main_execute.main_execute(vars)
     execute_docking.run_docking_common(vars, 0, current_generation_dir, None)
 
-    # os.system("ls -lR > filetree.txt")
     try:
-        return open(
+        file_contents = open(
             current_generation_dir
             + "PDBs/"
             + ligand_temp_file_name
@@ -209,13 +197,17 @@ def dock():
             "r",
             ).read()
     except:
-        return open(
+        file_contents = open(
                 current_generation_dir
                 + "PDBs/"
                 + ligand_temp_file_name
                 + "_docking_output.txt",
                 "r",
             ).read()
+    shutil.rmtree(vars["output_directory"])
+    os.remove(ligand_temp_file_name)
+    os.remove(receptor_temp_file_name)
+    return file_contents
 
 
 @application.route("/execute")
