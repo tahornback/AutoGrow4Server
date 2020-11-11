@@ -204,9 +204,9 @@ def dock():
                 + "_docking_output.txt",
                 "r",
             ).read()
-    shutil.rmtree(vars["output_directory"])
-    os.remove(ligand_temp_file_name)
-    os.remove(receptor_temp_file_name)
+    # shutil.rmtree(vars["output_directory"])
+    # os.remove(CWD + ligand_temp_file_name)
+    # os.remove(CWD + receptor_temp_file_name)
     return file_contents
 
 
