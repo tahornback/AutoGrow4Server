@@ -18,7 +18,6 @@ import argparse
 import copy
 import json
 import os
-
 import rdkit
 import rdkit.Chem as Chem
 from rdkit.Chem import AllChem

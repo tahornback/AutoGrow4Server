@@ -15,7 +15,6 @@ from __future__ import unicode_literals
 
 import logging
 import sys
-
 from rdkit import Chem
 
 from .errors import StopValidateError

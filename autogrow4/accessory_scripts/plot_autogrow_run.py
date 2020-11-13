@@ -13,10 +13,9 @@ import argparse
 import copy
 import glob
 import json
-import os
-
 import matplotlib
 import matplotlib.pyplot as plt
+import os
 
 
 def get_usable_format(infile):

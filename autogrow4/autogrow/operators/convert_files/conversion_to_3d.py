@@ -4,12 +4,11 @@ Run file type conversions from .smi to .sdf to .pdb
 
 import glob
 import os
-import sys
-from os.path import basename
-
 import rdkit
 import rdkit.Chem as Chem
+import sys
 from func_timeout import func_timeout
+from os.path import basename
 
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")
@@ -27,8 +26,13 @@ GYPSUM_GYPSUM_DIR = (
     + "gypsum_dl"
 )
 sys.path.extend([GYPSUM_DIR, CURRENT_DIR, GYPSUM_GYPSUM_DIR])
-import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
-from autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Start import prepare_molecules
+try:
+    import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
+    from autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Start import prepare_molecules
+except:
+    import autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
+    from autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Start import prepare_molecules
+
 
 class StdoutRedirection:
     """Standard output redirection context manager

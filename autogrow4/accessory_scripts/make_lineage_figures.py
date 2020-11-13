@@ -11,13 +11,12 @@ import argparse
 import copy
 import glob
 import json
+import matplotlib.pyplot as plt
 import os
 import pickle
-import sys
-
-import matplotlib.pyplot as plt
 import rdkit
 import rdkit.Chem as Chem
+import sys
 from PIL import Image
 from rdkit.Chem import Draw, AllChem
 

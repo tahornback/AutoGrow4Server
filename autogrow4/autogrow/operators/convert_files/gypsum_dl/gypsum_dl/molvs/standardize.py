@@ -15,7 +15,6 @@ from __future__ import unicode_literals
 
 import copy
 import logging
-
 from rdkit import Chem
 
 from .charge import ACID_BASE_PAIRS, CHARGE_CORRECTIONS, Reionizer, Uncharger

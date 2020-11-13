@@ -17,10 +17,9 @@ Saves the output to an HTML file (2D images only). This is mostly for
 debugging.
 """
 
+import gypsum_dl.Utils as Utils
 # import webbrowser
 import os
-
-import gypsum_dl.Utils as Utils
 
 try:
     from rdkit.Chem import rdDepictor

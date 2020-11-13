@@ -1,15 +1,17 @@
-import base64
-import os
-import random
-import shutil
-import string
+import time
 
-import autogrow4.autogrow.docking.execute_docking as execute_docking
-import autogrow4.autogrow.operators.convert_files.conversion_to_3d as conversion_to_3d
-import autogrow4.autogrow.operators.operations as operations
-import autogrow4.autogrow.user_vars as user_vars
 from flask import Flask, request, jsonify
+import os
+import autogrow4.autogrow.operators.operations as operations
+import autogrow4.autogrow.operators.convert_files.conversion_to_3d as conversion_to_3d
+import autogrow4.autogrow.user_vars as user_vars
+import autogrow4.autogrow.docking.execute_docking as execute_docking
+import shutil
+
 from rdkit import Chem
+import random
+import string
+import base64
 
 application = Flask(__name__)
 

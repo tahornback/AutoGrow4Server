@@ -23,11 +23,10 @@ MyMol.MyConformer
 """
 
 import copy
-import operator
-import sys
-
 import gypsum_dl.MolObjectHandling as MOH
 import gypsum_dl.Utils as Utils
+import operator
+import sys
 # Disable the unnecessary RDKit warnings
 from rdkit import RDLogger
 

@@ -3,9 +3,8 @@ The child classes from ParentExample
 """
 
 import os
-import subprocess
-
 import rdkit.Chem as Chem
+import subprocess
 
 try:
     import autogrow4.autogrow.docking.delete_failed_mol as Delete

@@ -17,12 +17,11 @@ Module for enumerating unspecified double bonds (cis vs. trans).
 """
 
 import copy
-import itertools
-
 import gypsum_dl.ChemUtils as ChemUtils
 import gypsum_dl.MyMol as MyMol
 import gypsum_dl.Parallelizer as Parallelizer
 import gypsum_dl.Utils as Utils
+import itertools
 
 try:
     from rdkit import Chem

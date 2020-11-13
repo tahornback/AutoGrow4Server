@@ -9,7 +9,6 @@ import copy
 import itertools
 import os
 import random
-
 import rdkit
 import rdkit.Chem as Chem
 from rdkit import RDLogger

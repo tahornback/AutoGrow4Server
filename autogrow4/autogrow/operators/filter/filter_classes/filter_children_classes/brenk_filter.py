@@ -10,10 +10,13 @@ Assembling Screening Libraries for Drug Discovery for Neglected Diseases.
 ChemMedChem 3 (2008) 435-444. doi:10.1002/cmdc.200700139.
 """
 
-from autogrow4.autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
 from rdkit.Chem import FilterCatalog
 from rdkit.Chem.FilterCatalog import FilterCatalogParams
 
+try:
+    from autogrow4.autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
+except Exception as e:
+    from autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
 
 class BRENKFilter(ParentFilter):
     """
