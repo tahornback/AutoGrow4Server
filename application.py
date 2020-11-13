@@ -11,6 +11,7 @@ import autogrow4.autogrow.user_vars as user_vars
 from flask import Flask, request, jsonify
 from rdkit import Chem
 import rdkit.Chem.Crippen as Crippen
+import rdkit.Chem.GraphDescriptors as GraphDescriptors
 
 application = Flask(__name__)
 
@@ -103,7 +104,7 @@ def updateProperties():
         "logP": Crippen.MolLogP(mol),
         "heteroAtoms": Chem.rdMolDescriptors.CalcNumHeteroatoms(mol),
         "heavyAtoms": mol.GetNumHeavyAtoms(),
-        "complexity": Chem.GraphDescriptors.BertzCT(mol),
+        "complexity": GraphDescriptors.BertzCT(mol),
         "smiles": sanitized_smiles,
         "mol2D": rdkit_mol_sdf,
         "mol3D": threed_sdf,
