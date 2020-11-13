@@ -15,6 +15,7 @@ from __future__ import unicode_literals
 
 import copy
 import logging
+
 from rdkit import Chem
 
 from .utils import memoized_property

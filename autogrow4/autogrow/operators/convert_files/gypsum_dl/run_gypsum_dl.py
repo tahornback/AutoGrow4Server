@@ -64,6 +64,7 @@ print_gypsum_citation()
 
 import argparse
 import copy
+
 from gypsum_dl import Utils
 from gypsum_dl.Start import prepare_molecules
 from gypsum_dl.Test.Tester import run_test

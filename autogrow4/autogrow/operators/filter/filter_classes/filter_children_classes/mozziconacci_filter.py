@@ -24,11 +24,7 @@ import rdkit.Chem.Lipinski as Lipinski
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")
 
-try:
-    from autogrow4.autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
-except Exception as e:
-    from autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
-
+from autogrow4.autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
 
 class MozziconacciFilter(ParentFilter):
     """

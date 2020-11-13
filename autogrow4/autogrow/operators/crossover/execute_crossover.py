@@ -13,6 +13,7 @@ iterates until a shared structure is returned.
 
 import copy
 import random
+
 import rdkit
 from rdkit import Chem
 from rdkit.Chem import rdFMCS
@@ -20,17 +21,9 @@ from rdkit.Chem import rdFMCS
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")
 
-try:
-    import autogrow4.autogrow.operators.filter.execute_filters as Filter
-    import autogrow4.autogrow.operators.crossover.smiles_merge.smiles_merge as smiles_merge
-    import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
-except Exception as e:
-    import autogrow.operators.filter.execute_filters as Filter
-    import autogrow.operators.crossover.smiles_merge.smiles_merge as smiles_merge
-    import autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
-
-
-
+import autogrow4.autogrow.operators.filter.execute_filters as Filter
+import autogrow4.autogrow.operators.crossover.smiles_merge.smiles_merge as smiles_merge
+import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
 
 def test_for_mcs(vars, mol_1, mol_2):
     """

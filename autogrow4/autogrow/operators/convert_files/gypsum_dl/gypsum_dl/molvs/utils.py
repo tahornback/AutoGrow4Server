@@ -12,8 +12,9 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 import functools
-import six
 from itertools import tee
+
+import six
 
 
 def memoized_property(fget):

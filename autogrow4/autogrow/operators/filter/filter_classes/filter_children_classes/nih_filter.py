@@ -11,13 +11,9 @@ Inhibitors of a Thiol Protease. J Med Chem 53 (2009) 37D51.
 doi:10.1021/jm901070c.
 """
 
+from autogrow4.autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
 from rdkit.Chem import FilterCatalog
 from rdkit.Chem.FilterCatalog import FilterCatalogParams
-
-try:
-    from autogrow4.autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
-except Exception as e:
-    from autogrow.operators.filter.filter_classes.parent_filter_class import ParentFilter
 
 
 class NIHFilter(ParentFilter):

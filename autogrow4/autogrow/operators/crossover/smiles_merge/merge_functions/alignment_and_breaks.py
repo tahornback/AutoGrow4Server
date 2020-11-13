@@ -2,18 +2,13 @@
 
 import copy
 import random
+
 import rdkit
 from rdkit import Chem
 
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")
-try:
-    import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
-except Exception as e:
-    import autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
-
-
-
+import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
 
 # handle_mcs_alignments_labeling_and_cyclicbreaks
 def handle_mcs_align_labeling_and_cyclicbreaks(mol_1, mol_2, mcs_mol):

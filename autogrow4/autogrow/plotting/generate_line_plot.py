@@ -1,8 +1,9 @@
 """ Plots AutoGrow Run"""
 
 import glob
-import matplotlib.pyplot as plt
 import os
+
+import matplotlib.pyplot as plt
 
 
 def get_usable_format(infile):

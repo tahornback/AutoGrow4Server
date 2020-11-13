@@ -13,6 +13,7 @@ from __future__ import unicode_literals
 
 import copy
 import logging
+
 from rdkit import Chem
 from rdkit.Chem.rdchem import BondDir, BondStereo, BondType
 
