@@ -13,8 +13,6 @@ Libraries and for Their Exclusion in Bioassays. J Med Chem 53 (2010) 2719D40.
 doi:10.1021/jm901137j.
 """
 
-import __future__
-
 from rdkit.Chem import FilterCatalog
 from rdkit.Chem.FilterCatalog import FilterCatalogParams
 

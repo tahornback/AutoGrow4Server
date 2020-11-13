@@ -3,13 +3,11 @@
 # Protein-Ligand Complexes. Jacob D. Durrant, J. Andrew McCammon. Journal of
 # Chemical Information and Modeling, 2010, 50 (10), pp 1865-1871.
 
-import __future__
-
-import sys
 import math
-import time
 import os
 import random
+import sys
+import time
 
 ######################################## Variables to Modify if AutoDock Output Files are to be Used ##############################################################################
 mglenv = '' # If you need to use source to set environmental variables, put the filename of the file to source here.

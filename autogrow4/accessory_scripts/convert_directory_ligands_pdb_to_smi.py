@@ -20,16 +20,14 @@ CC1COC(=O)OC(=O)O1    ZINC60039447
 O = C1OC(=O)N2CCC12    ZINC59199492
 O = C1CC(C(=O)O)C(=O)O1    ZINC59901386
 """
-import __future__
 
+import argparse
 import glob
 import os
-import argparse
-
+import support_scripts.Multiprocess as mp
+import support_scripts.mol_object_handling as MOH
 from rdkit import Chem
 
-import support_scripts.mol_object_handling as MOH
-import support_scripts.Multiprocess as mp
 
 def run_convert_on_single_pdb(pdb):
 

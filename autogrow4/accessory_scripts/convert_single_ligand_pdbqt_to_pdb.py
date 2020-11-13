@@ -14,9 +14,8 @@ This is done by removing a column of the PDB file.
 
 """
 
-import __future__
-import os
 import argparse
+import os
 
 
 def convert_pdbqt_to_pdb(pdbqt_file_in, pdb_file_out):

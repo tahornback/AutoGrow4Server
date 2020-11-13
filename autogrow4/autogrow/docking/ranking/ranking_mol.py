@@ -1,15 +1,13 @@
 """
 This script runs the ranking and selection of ligands.
 """
-import __future__
 
 import os
 import random
-
 import rdkit
 import rdkit.Chem as Chem
-from rdkit.Chem.rdMolDescriptors import GetMorganFingerprint
 from rdkit import DataStructs
+from rdkit.Chem.rdMolDescriptors import GetMorganFingerprint
 
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")

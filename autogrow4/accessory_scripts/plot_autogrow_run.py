@@ -8,16 +8,15 @@ Example submit:
             ['Niraparib',-10.7,'k'],['NAD/NADH',-10.3,'purple'],\
                 ['ADP-ribose',-9.3,'maroon']]
 """
-import __future__
 
-import os
+import argparse
+import copy
 import glob
 import json
-import copy
-import argparse
-
 import matplotlib
 import matplotlib.pyplot as plt
+import os
+
 
 def get_usable_format(infile):
     """

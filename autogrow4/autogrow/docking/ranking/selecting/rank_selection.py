@@ -1,11 +1,7 @@
 """
 This script is use to select molecules using a ranked selector
 """
-import __future__
 
-
-import os
-import random
 
 def run_rank_selector(usable_list_of_smiles, number_to_chose,
                       column_idx_to_select, reverse_sort=False):

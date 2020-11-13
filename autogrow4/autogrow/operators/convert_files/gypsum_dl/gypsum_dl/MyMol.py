@@ -22,17 +22,14 @@ So just to clarify: MolContainer.MolContainer > MyMol.MyMol >
 MyMol.MyConformer
 """
 
-import __future__
-
-import sys
 import copy
-import operator
-
-import gypsum_dl.Utils as Utils
 import gypsum_dl.MolObjectHandling as MOH
-
-#Disable the unnecessary RDKit warnings
+import gypsum_dl.Utils as Utils
+import operator
+import sys
+# Disable the unnecessary RDKit warnings
 from rdkit import RDLogger
+
 RDLogger.DisableLog('rdApp.*')
 
 try:

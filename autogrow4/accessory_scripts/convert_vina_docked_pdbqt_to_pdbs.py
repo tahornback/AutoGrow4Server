@@ -28,12 +28,12 @@ python PATH/autogrow4/accessory_scripts/convert_vina_docked_pdbqt_to_pdbs.py \
     --max_num_of_poses 1 --number_of_processors -1
 """
 
-import os
-import copy
 import argparse
+import copy
 import glob
-
+import os
 import support_scripts.Multiprocess as mp
+
 
 def run_conversion_for_a_vina_file(vina_file, output_folder, max_num_of_poses,
                                    max_docking_score, min_docking_score):

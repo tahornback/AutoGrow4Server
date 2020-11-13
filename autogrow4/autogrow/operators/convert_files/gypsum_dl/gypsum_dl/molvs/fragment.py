@@ -9,16 +9,15 @@ This module contains tools for dealing with molecules with more than one covalen
 
 """
 
+from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
-from __future__ import division
-import logging
 
+import logging
 from rdkit import Chem
 from rdkit.Chem import rdMolDescriptors
 
 from .utils import memoized_property
-
 
 log = logging.getLogger(__name__)
 

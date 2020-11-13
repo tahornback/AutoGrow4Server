@@ -16,8 +16,6 @@
 The module includes definitions to manipulate the molecules.
 """
 
-import __future__
-
 import gypsum_dl.Utils as Utils
 
 try:

@@ -1,7 +1,6 @@
 """
 Top level for running filters.
 """
-import __future__
 
 import copy
 

@@ -16,7 +16,6 @@
 A module for loading in files.
 """
 
-import __future__
 from gypsum_dl import Utils
 
 try:

@@ -10,8 +10,6 @@ Assembling Screening Libraries for Drug Discovery for Neglected Diseases.
 ChemMedChem 3 (2008) 435-444. doi:10.1002/cmdc.200700139.
 """
 
-import __future__
-
 from rdkit.Chem import FilterCatalog
 from rdkit.Chem.FilterCatalog import FilterCatalogParams
 

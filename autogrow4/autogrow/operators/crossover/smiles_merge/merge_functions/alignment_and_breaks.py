@@ -1,9 +1,7 @@
 """This handles alignment and ring breaks for Crossover"""
-import __future__
 
-import random
 import copy
-
+import random
 import rdkit
 from rdkit import Chem
 

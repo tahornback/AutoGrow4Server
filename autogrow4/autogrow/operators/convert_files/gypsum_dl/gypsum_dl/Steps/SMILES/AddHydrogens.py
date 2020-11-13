@@ -17,15 +17,12 @@ This module identifies and enumerates the possible protonation sites of
 molecules.
 """
 
-from rdkit import Chem
-
-import gypsum_dl.Parallelizer as Parallelizer
-import gypsum_dl.Utils as Utils
 import gypsum_dl.ChemUtils as ChemUtils
 import gypsum_dl.MyMol as MyMol
-import gypsum_dl.MolContainer as MolCont
-
+import gypsum_dl.Parallelizer as Parallelizer
+import gypsum_dl.Utils as Utils
 from gypsum_dl.Steps.SMILES.dimorphite_dl.dimorphite_dl import Protonate
+from rdkit import Chem
 
 
 def add_hydrogens(

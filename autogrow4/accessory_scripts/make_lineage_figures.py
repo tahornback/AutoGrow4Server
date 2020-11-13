@@ -7,20 +7,18 @@ that if this script is run multiple times these dictionaries do not need to be \
 recreated. For this reason the 1st time running this script on a data set will \
 take longer than future runs.
 """
-import os
-import sys
-import glob
 import argparse
-import json
 import copy
-import pickle
-
+import glob
+import json
 import matplotlib.pyplot as plt
-
+import os
+import pickle
 import rdkit
 import rdkit.Chem as Chem
-from rdkit.Chem import Draw, AllChem
+import sys
 from PIL import Image
+from rdkit.Chem import Draw, AllChem
 
 #Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog('rdApp.*')

@@ -2,8 +2,6 @@
 This function handles the scoring/rescoring of docked molecules.
 """
 
-import __future__
-
 try:
     from autogrow4.autogrow.docking.docking_class.get_child_class import get_all_subclasses
     import autogrow4.autogrow.docking.scoring.scoring_classes.scoring_functions

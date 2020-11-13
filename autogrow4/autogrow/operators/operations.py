@@ -2,27 +2,23 @@
 Populates an AutoGrow generation via mutation, crossover, and elitism.
 Also filters and converts SMILES to 3d SDFS.
 """
-import __future__
 
+import copy
 import os
 import random
-import copy
-import sys
-
 import rdkit
 import rdkit.Chem as Chem
+import sys
 
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")
 try:
     import autogrow4.autogrow.docking.ranking.ranking_mol as Ranking
-    import autogrow4.autogrow.operators.mutation.execute_mutations as Mutation
     import autogrow4.autogrow.operators.crossover.execute_crossover as execute_crossover
     import autogrow4.autogrow.operators.convert_files.conversion_to_3d as conversion_to_3d
     import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH
 except:
     import autogrow.docking.ranking.ranking_mol as Ranking
-    import autogrow.operators.mutation.execute_mutations as Mutation
     import autogrow.operators.crossover.execute_crossover as execute_crossover
     import autogrow.operators.convert_files.conversion_to_3d as conversion_to_3d
     import autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH

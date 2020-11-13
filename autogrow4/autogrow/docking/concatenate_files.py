@@ -3,11 +3,10 @@ This script compresses files which makes it easier to transfer data To
     decompress the files use the script in
     $PATH/autogrow4/accessory_scripts/file_concatenation_and_compression.py .
 """
-import __future__
 
 import glob
-import os
 import gzip
+import os
 import shutil
 
 

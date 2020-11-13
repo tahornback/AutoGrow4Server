@@ -13,7 +13,6 @@
 # limitations under the License.
 
 ##### MolObjectHandling.py
-import __future__
 
 import rdkit
 from rdkit import Chem

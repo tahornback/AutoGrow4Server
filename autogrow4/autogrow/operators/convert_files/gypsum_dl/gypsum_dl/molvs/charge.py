@@ -9,16 +9,15 @@ which attempts to neutralize ionized acids and bases on a molecule.
 
 """
 
+from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
-from __future__ import division
+
 import copy
 import logging
-
 from rdkit import Chem
 
 from .utils import memoized_property
-
 
 log = logging.getLogger(__name__)
 

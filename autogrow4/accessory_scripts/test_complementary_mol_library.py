@@ -13,13 +13,11 @@ autogrow4/autogrow/operators/mutation/smiles_click_chem/reaction_libraries/click
 autogrow4/autogrow/operators/mutation/smiles_click_chem/reaction_libraries/click_chem_rxns/complementary_mol_dir \
 --output_folder autogrow4/accessory_scripts/output/
 """
-import __future__
 
-import os
-import json
-import copy
 import argparse
-
+import copy
+import json
+import os
 import rdkit
 import rdkit.Chem as Chem
 from rdkit.Chem import AllChem

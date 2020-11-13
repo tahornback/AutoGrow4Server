@@ -1,11 +1,10 @@
 """
 This script is use to select molecules using a tournament selector
 """
-import __future__
 
-import random
-import math
 import copy
+import math
+import random
 
 
 def run_Tournament_Selector(list_of_ligands, num_to_chose, tourn_size,

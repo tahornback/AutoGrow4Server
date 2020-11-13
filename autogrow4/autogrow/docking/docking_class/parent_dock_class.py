@@ -2,7 +2,7 @@
 This script holds the parent class for docking.
 This is used as the basis for all docking classes.
 """
-import __future__
+
 
 class ParentDocking(object):
     """

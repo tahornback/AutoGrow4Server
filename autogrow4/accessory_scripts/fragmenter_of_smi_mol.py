@@ -4,16 +4,16 @@ Example Run:
 python fragmenter_of_smi_mol.py \
     --smi_file autogrow4/source_compounds/PARPi.smi
 """
-import itertools
-import copy
-import random
-import os
 import argparse
-
+import copy
+import itertools
+import os
+import random
 import rdkit
 import rdkit.Chem as Chem
-from rdkit.Chem.BRICS import BRICSDecompose
 from rdkit import RDLogger
+from rdkit.Chem.BRICS import BRICSDecompose
+
 # Turn off warnings
 RDLogger.DisableLog('rdApp.*')
 

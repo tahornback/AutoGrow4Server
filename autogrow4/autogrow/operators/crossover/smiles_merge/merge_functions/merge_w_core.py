@@ -2,7 +2,6 @@
 This script is handles the merging of two molecules and cleans up
 the molecule.
 """
-import __future__
 
 import copy
 import rdkit

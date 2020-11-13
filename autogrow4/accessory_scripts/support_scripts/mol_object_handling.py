@@ -21,8 +21,6 @@
 # def nitrogen_charge_adjustment  became nitrogen_charge_adjustment
 # file name change from MolObjectHandling.py to mol_object_handling.py
 
-import __future__
-
 import rdkit
 from rdkit import Chem
 #Disable the unnecessary RDKit warnings

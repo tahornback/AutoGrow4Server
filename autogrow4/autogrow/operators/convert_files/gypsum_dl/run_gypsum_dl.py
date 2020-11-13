@@ -28,8 +28,6 @@ def print_gypsum_citation():
     Without this check, in MPI mode it would print once per available cpu.
     """
 
-    import sys
-
     # And always report citation information.
     citation_print = "\nIf you use Gypsum-DL in your research, please cite:\n\n"
     citation_print = (
@@ -66,9 +64,9 @@ print_gypsum_citation()
 
 import argparse
 import copy
+from gypsum_dl import Utils
 from gypsum_dl.Start import prepare_molecules
 from gypsum_dl.Test.Tester import run_test
-from gypsum_dl import Utils
 
 PARSER = argparse.ArgumentParser(
     formatter_class=argparse.RawDescriptionHelpFormatter,

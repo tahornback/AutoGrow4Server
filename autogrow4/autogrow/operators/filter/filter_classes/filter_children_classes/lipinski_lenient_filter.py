@@ -14,13 +14,12 @@ and computational approaches to estimate solubility and permeability in drug
 discovery and development settings Advanced Drug Delivery Reviews, 46 (2001),
 pp. 3-26
 """
-import __future__
 
 import rdkit
-import rdkit.Chem as Chem
-import rdkit.Chem.Lipinski as Lipinski
 import rdkit.Chem.Crippen as Crippen
 import rdkit.Chem.Descriptors as Descriptors
+import rdkit.Chem.Lipinski as Lipinski
+
 #Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog('rdApp.*')
 

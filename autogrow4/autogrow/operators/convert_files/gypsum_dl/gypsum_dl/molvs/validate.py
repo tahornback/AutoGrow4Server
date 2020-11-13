@@ -9,17 +9,16 @@ convenience function.
 
 """
 
+from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
-from __future__ import division
+
 import logging
 import sys
-
 from rdkit import Chem
 
 from .errors import StopValidateError
 from .validations import VALIDATIONS
-
 
 #: The default format for log messages.
 SIMPLE_FORMAT = '%(levelname)s: [%(validation)s] %(message)s'

@@ -1,7 +1,6 @@
 """
 This script is use to select molecules using a roulette selector
 """
-import __future__
 
 import numpy.random as rn
 

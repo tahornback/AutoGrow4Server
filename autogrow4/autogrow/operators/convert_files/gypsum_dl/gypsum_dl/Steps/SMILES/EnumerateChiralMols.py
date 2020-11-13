@@ -16,16 +16,12 @@
 A module for generating alternate chiralities.
 """
 
-import __future__
-
 import copy
-import itertools
-import random
-
-import gypsum_dl.Parallelizer as Parallelizer
-import gypsum_dl.Utils as Utils
 import gypsum_dl.ChemUtils as ChemUtils
 import gypsum_dl.MyMol as MyMol
+import gypsum_dl.Parallelizer as Parallelizer
+import gypsum_dl.Utils as Utils
+import itertools
 
 try:
     from rdkit import Chem

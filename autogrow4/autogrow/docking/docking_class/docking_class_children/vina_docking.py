@@ -1,11 +1,10 @@
 """
 The child classes from ParentExample
 """
-import __future__
 
+import glob
 import os
 import sys
-import glob
 
 try:
     import autogrow4.autogrow.docking.delete_failed_mol as Delete

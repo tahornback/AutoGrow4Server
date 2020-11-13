@@ -17,17 +17,13 @@ Contains the prepare_molecules definition which reads, prepares, and writes
 small molecules.
 """
 
-import __future__
-
-import sys
+import gypsum_dl.Utils as Utils
 import json
 import os
-from datetime import datetime
+import sys
 from collections import OrderedDict
-
-import gypsum_dl.Utils as Utils
+from datetime import datetime
 from gypsum_dl.Parallelizer import Parallelizer
-from gypsum_dl.Parallelizer import flatten_list
 
 try:
     from rdkit.Chem import AllChem

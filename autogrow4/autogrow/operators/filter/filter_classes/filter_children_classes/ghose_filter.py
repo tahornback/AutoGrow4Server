@@ -17,13 +17,10 @@ discovery. 1. A qualitative and quantitative characterization of known drug
 databases Journal of Combinatorial Chemistry, 1 (1999), pp. 55-68
 """
 
-import __future__
-
 import copy
 
 import rdkit
 import rdkit.Chem as Chem
-import rdkit.Chem.Lipinski as Lipinski
 import rdkit.Chem.Crippen as Crippen
 import rdkit.Chem.Descriptors as Descriptors
 

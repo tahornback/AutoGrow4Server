@@ -10,9 +10,7 @@ Aggregation, Autofluorescence, and Reactivity Artifacts in a Screen for
 Inhibitors of a Thiol Protease. J Med Chem 53 (2009) 37D51.
 doi:10.1021/jm901070c.
 """
-import __future__
 
-import rdkit
 from rdkit.Chem import FilterCatalog
 from rdkit.Chem.FilterCatalog import FilterCatalogParams
 

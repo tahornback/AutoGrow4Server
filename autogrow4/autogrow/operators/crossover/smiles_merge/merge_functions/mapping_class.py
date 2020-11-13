@@ -3,10 +3,9 @@ This script holds the Mapping class.
 This is used when mapping most common substructure (MCS)
     to combine two molecules.
 """
-import __future__
 
-import random
 import copy
+import random
 
 
 class Mapping(object):

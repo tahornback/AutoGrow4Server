@@ -17,8 +17,6 @@ Virtual Screening Applications: Gathering, Structural Analysis and Filtering.
 (2003).
 """
 
-import __future__
-
 import rdkit
 import rdkit.Chem as Chem
 import rdkit.Chem.Lipinski as Lipinski

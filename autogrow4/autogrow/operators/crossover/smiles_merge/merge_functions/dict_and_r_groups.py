@@ -1,7 +1,6 @@
 """
 Dictionary and Dictionary handling functions
 """
-import __future__
 
 import copy
 

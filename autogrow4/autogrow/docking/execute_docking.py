@@ -1,7 +1,6 @@
 """
 This script handles the docking and file conversion for docking.
 """
-import __future__
 
 import os
 try:

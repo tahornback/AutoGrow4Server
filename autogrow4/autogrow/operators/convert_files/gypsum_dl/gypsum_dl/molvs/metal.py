@@ -7,13 +7,12 @@ This module contains tools for disconnecting metal atoms that are defined as cov
 
 """
 
+from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
-from __future__ import division
+
 import logging
-
 from rdkit import Chem
-
 
 log = logging.getLogger(__name__)
 

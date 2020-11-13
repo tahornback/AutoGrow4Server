@@ -7,17 +7,16 @@ This module contains tools for normalizing molecules using reaction SMARTS patte
 
 """
 
+from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
-from __future__ import division
-import logging
 
+import logging
+import six
 from rdkit import Chem
 from rdkit.Chem import AllChem
-import six
 
 from .utils import memoized_property
-
 
 log = logging.getLogger(__name__)
 

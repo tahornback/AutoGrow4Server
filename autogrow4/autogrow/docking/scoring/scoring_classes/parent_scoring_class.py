@@ -2,7 +2,7 @@
 This script holds the parent class for scoring/rescoring.
 This is used as the basis for all scoring/rescoring classes.
 """
-import __future__
+
 
 class ParentScoring(object):
     """

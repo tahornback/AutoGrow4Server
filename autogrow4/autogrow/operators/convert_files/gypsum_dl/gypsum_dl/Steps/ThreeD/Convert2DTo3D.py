@@ -17,12 +17,9 @@ A module to so the 2D to 3D conversion, though the actual code for that
 conversion is in MyMol.MyMol.make_first_3d_conf_no_min()
 """
 
-import __future__
-import copy
-
+import gypsum_dl.ChemUtils as ChemUtils
 import gypsum_dl.Parallelizer as Parallelizer
 import gypsum_dl.Utils as Utils
-import gypsum_dl.ChemUtils as ChemUtils
 
 try:
     from rdkit import Chem

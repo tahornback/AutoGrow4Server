@@ -9,21 +9,20 @@ standardization tasks.
 
 """
 
+from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
-from __future__ import division
+
 import copy
 import logging
-
 from rdkit import Chem
 
-from .metal import MetalDisconnector
+from .charge import ACID_BASE_PAIRS, CHARGE_CORRECTIONS, Reionizer, Uncharger
 from .fragment import PREFER_ORGANIC, LargestFragmentChooser, FragmentRemover
+from .metal import MetalDisconnector
 from .normalize import NORMALIZATIONS, MAX_RESTARTS, Normalizer
 from .tautomer import TAUTOMER_TRANSFORMS, TAUTOMER_SCORES, MAX_TAUTOMERS, TautomerCanonicalizer, TautomerEnumerator
-from .charge import ACID_BASE_PAIRS, CHARGE_CORRECTIONS, Reionizer, Uncharger
 from .utils import memoized_property
-
 
 log = logging.getLogger(__name__)
 

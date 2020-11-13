@@ -1,7 +1,6 @@
 """
 The child classes from ParentExample
 """
-import __future__
 
 import os
 import sys

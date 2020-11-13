@@ -31,14 +31,12 @@ Example compression:
 
 This concatenated file is tar.gz compressed.
 """
-import __future__
 
-import glob
-import os
-import gzip
-import shutil
 import argparse
-
+import glob
+import gzip
+import os
+import shutil
 import support_scripts.Multiprocess as mp
 
 

@@ -2,7 +2,6 @@
 This script contains the class LigEfficiency.
 This is used to rescore a fitness metric by the number of non-hydrogen atoms.
 """
-import __future__
 
 import rdkit
 import rdkit.Chem as Chem

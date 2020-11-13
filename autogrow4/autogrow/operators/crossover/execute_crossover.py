@@ -11,11 +11,8 @@ structures) then mol2 is reassigned using the random function generator. This
 iterates until a shared structure is returned.
 """
 
-import __future__
-
-import random
 import copy
-
+import random
 import rdkit
 from rdkit import Chem
 from rdkit.Chem import rdFMCS

@@ -17,12 +17,9 @@ This module performs a final 3D minimization to improve the small-molecule
 geometry.
 """
 
-import __future__
-
 import copy
 
 import gypsum_dl.Utils as Utils
-import gypsum_dl.ChemUtils as ChemUtils
 from gypsum_dl.MyMol import MyConformer
 
 

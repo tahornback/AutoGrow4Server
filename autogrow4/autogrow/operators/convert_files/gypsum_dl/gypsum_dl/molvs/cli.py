@@ -7,16 +7,15 @@ This module contains a command line interface for standardization.
 
 """
 
+from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
-from __future__ import division
+
 import argparse
 import logging
-from rdkit import Chem
 import sys
-
 from molvs import Standardizer, Validator
-
+from rdkit import Chem
 
 log = logging.getLogger(__name__)
 

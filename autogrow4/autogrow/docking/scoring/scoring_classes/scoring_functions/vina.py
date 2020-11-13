@@ -2,7 +2,6 @@
 This script contains the class VINA.
 This is used to score Vina type docking such as QuickVina2 and Vina
 """
-import __future__
 
 import glob
 import os

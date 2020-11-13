@@ -11,11 +11,8 @@ for de novo drug design and lead optimization. J Cheminform 12, 25 (2020).
 [doi: 10.1186/s13321-020-00429-4]
 """
 
-import __future__
-
 import argparse
 import copy
-import datetime
 
 # Imports of files are burried below to prevent EOF issues in MPI mode
 
@@ -689,6 +686,4 @@ if args_dict["cache_prerun"] is False:
 
 
 else:  # cache prerun. This is necessary to prevent race conditions in mpi mode.
-    import autogrow4.autogrow.user_vars
     import autogrow4.autogrow.autogrow_main_execute as AutogrowMainExecute
-    import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.Parallelizer

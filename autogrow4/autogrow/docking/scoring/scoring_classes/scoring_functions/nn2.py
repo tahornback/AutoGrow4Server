@@ -2,7 +2,6 @@
 This script contains the class NN2 that rescores Vina type docking
 using the program NNScore2.
 """
-import __future__
 
 import glob
 import os

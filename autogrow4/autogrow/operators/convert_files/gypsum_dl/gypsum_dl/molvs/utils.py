@@ -7,13 +7,13 @@ This module contains miscellaneous utility functions.
 
 """
 
+from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
-from __future__ import division
-import functools
-from itertools import tee
 
+import functools
 import six
+from itertools import tee
 
 
 def memoized_property(fget):

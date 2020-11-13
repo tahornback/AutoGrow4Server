@@ -18,9 +18,10 @@ strings.
 """
 
 from __future__ import print_function
+
+import argparse
 import copy
 import os
-import argparse
 import sys
 
 try:

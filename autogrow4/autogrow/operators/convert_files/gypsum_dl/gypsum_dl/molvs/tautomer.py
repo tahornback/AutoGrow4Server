@@ -7,12 +7,12 @@ This module contains tools for enumerating tautomers and determining a canonical
 
 """
 
+from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
-from __future__ import division
+
 import copy
 import logging
-
 from rdkit import Chem
 from rdkit.Chem.rdchem import BondDir, BondStereo, BondType
 

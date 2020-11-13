@@ -3,12 +3,12 @@ Top level for running AutoGrow.
 Runs all population generation (operations) and docking.
 Runs plotting at end.
 """
-import __future__
 
-import os
 import glob
-import sys
+import os
 import shutil
+import sys
+
 try:
     import autogrow4.autogrow.docking.execute_docking as DockingClass
     import autogrow4.autogrow.operators.operations as operations

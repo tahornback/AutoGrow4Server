@@ -27,7 +27,6 @@ or a high-performance computer cluster, utilizing the full resources of each
 system. (Description provided by Harrison Green.)
 """
 
-import __future__
 import multiprocessing
 import sys
 

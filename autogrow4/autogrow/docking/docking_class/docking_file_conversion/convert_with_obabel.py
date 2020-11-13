@@ -1,13 +1,12 @@
 """
 The child classes from ParentExample
 """
-import __future__
 
-import os
-import subprocess
 import datetime
-
+import os
 import rdkit.Chem as Chem
+import subprocess
+
 try:
     import autogrow4.autogrow.docking.delete_failed_mol as Delete
     import autogrow4.autogrow.operators.convert_files.gypsum_dl.gypsum_dl.MolObjectHandling as MOH

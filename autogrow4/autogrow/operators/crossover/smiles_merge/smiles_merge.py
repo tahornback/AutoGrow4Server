@@ -1,7 +1,6 @@
 """
 Run a single crossover event.
 """
-import __future__
 
 import rdkit
 from rdkit import Chem

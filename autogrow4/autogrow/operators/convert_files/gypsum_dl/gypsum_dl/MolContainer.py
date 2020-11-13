@@ -21,11 +21,9 @@ MyMol.MyMol. So, just to clarify:
 MolContainer.MolContainer > MyMol.MyMol > MyMol.MyConformers
 """
 
-import __future__
-
-import gypsum_dl.Utils as Utils
 import gypsum_dl.ChemUtils as ChemUtils
 import gypsum_dl.MyMol as MyMol
+import gypsum_dl.Utils as Utils
 
 try:
     from rdkit import Chem
