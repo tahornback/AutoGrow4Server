@@ -9,6 +9,7 @@ import autogrow4.autogrow.docking.execute_docking as execute_docking
 import shutil
 
 from rdkit import Chem
+from rdkit.Chem import Crippen
 import random
 import string
 import base64
@@ -101,7 +102,7 @@ def updateProperties():
         "rotatable": Chem.rdMolDescriptors.CalcNumRotatableBonds(mol),
         "rings": Chem.rdMolDescriptors.CalcNumRings(mol),
         "tpsa": Chem.rdMolDescriptors.CalcTPSA(mol),
-        "logP": Chem.Crippen.MolLogP(mol),
+        "logP": Crippen.MolLogP(mol),
         "heteroAtoms": Chem.rdMolDescriptors.CalcNumHeteroatoms(mol),
         "heavyAtoms": mol.GetNumHeavyAtoms(),
         "complexity": Chem.GraphDescriptors.BertzCT(mol),
