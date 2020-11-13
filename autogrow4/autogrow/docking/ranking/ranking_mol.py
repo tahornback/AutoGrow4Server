@@ -4,6 +4,7 @@ This script runs the ranking and selection of ligands.
 
 import os
 import random
+
 import rdkit
 import rdkit.Chem as Chem
 from rdkit import DataStructs

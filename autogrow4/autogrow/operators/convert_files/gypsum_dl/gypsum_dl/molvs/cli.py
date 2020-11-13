@@ -14,6 +14,7 @@ from __future__ import unicode_literals
 import argparse
 import logging
 import sys
+
 from molvs import Standardizer, Validator
 from rdkit import Chem
 

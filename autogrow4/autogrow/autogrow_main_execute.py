@@ -9,9 +9,11 @@ import os
 import shutil
 import sys
 
+import autogrow4.autogrow.docking.concatenate_files as concatenate_files
 import autogrow4.autogrow.docking.execute_docking as DockingClass
 import autogrow4.autogrow.operators.operations as operations
-import autogrow4.autogrow.docking.concatenate_files as concatenate_files
+
+
 def main_execute(vars):
     """
     This function takes the user variables and runs Autogrow

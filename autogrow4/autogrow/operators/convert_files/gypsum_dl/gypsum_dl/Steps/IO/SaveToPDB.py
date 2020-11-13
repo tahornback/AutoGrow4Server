@@ -17,9 +17,10 @@ Contains the function for saving the output to PDB files.
 """
 
 import os
+import sys
+
 import rdkit
 import rdkit.Chem as Chem
-import sys
 from gypsum_dl import Utils
 
 # Disable the unnecessary RDKit warnings

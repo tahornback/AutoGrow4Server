@@ -6,9 +6,10 @@ Also filters and converts SMILES to 3d SDFS.
 import copy
 import os
 import random
+import sys
+
 import rdkit
 import rdkit.Chem as Chem
-import sys
 
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")

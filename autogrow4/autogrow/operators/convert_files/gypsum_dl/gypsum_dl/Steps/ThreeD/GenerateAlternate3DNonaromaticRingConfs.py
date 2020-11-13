@@ -19,9 +19,10 @@ conformations.
 """
 
 import copy
+import warnings
+
 import gypsum_dl.Parallelizer as Parallelizer
 import gypsum_dl.Utils as Utils
-import warnings
 from gypsum_dl.MyMol import MyConformer
 
 try:

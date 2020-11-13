@@ -16,8 +16,9 @@
 Saves output files to SDF.
 """
 
-import gypsum_dl.Utils as Utils
 import os
+
+import gypsum_dl.Utils as Utils
 
 try:
     from rdkit import Chem

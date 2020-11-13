@@ -4,11 +4,12 @@ Run file type conversions from .smi to .sdf to .pdb
 
 import glob
 import os
+import sys
+from os.path import basename
+
 import rdkit
 import rdkit.Chem as Chem
-import sys
 from func_timeout import func_timeout
-from os.path import basename
 
 # Disable the unnecessary RDKit warnings
 rdkit.RDLogger.DisableLog("rdApp.*")

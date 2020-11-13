@@ -13,6 +13,7 @@ iterates until a shared structure is returned.
 
 import copy
 import random
+
 import rdkit
 from rdkit import Chem
 from rdkit.Chem import rdFMCS

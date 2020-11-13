@@ -4,6 +4,7 @@ the molecule.
 """
 
 import copy
+
 import rdkit
 from rdkit import Chem
 

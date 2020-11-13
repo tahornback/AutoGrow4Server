@@ -3,12 +3,11 @@ This script handles the docking and file conversion for docking.
 """
 
 import os
-from autogrow4.autogrow.docking.docking_class.get_child_class import get_all_subclasses
 
 from autogrow4.autogrow.docking.docking_class.docking_class_children import *
-from autogrow4.autogrow.docking.docking_class.parent_dock_class import ParentDocking
-
 from autogrow4.autogrow.docking.docking_class.docking_file_conversion import *
+from autogrow4.autogrow.docking.docking_class.get_child_class import get_all_subclasses
+from autogrow4.autogrow.docking.docking_class.parent_dock_class import ParentDocking
 from autogrow4.autogrow.docking.docking_class.parent_pdbqt_converter import ParentPDBQTConverter
 
 
