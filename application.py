@@ -10,6 +10,7 @@ import autogrow4.autogrow.operators.operations as operations
 import autogrow4.autogrow.user_vars as user_vars
 from flask import Flask, request, jsonify
 from rdkit import Chem
+import rdkit.Chem.Crippen as Crippen
 
 application = Flask(__name__)
 
@@ -99,7 +100,7 @@ def updateProperties():
         "rotatable": Chem.rdMolDescriptors.CalcNumRotatableBonds(mol),
         "rings": Chem.rdMolDescriptors.CalcNumRings(mol),
         "tpsa": Chem.rdMolDescriptors.CalcTPSA(mol),
-        "logP": Chem.Crippen.MolLogP(mol),
+        "logP": Crippen.MolLogP(mol),
         "heteroAtoms": Chem.rdMolDescriptors.CalcNumHeteroatoms(mol),
         "heavyAtoms": mol.GetNumHeavyAtoms(),
         "complexity": Chem.GraphDescriptors.BertzCT(mol),
