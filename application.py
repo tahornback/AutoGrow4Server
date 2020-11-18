@@ -115,7 +115,13 @@ def updateProperties():
 @application.route("/submitDocking", methods=["POST"])
 def dock():
     # {
-    #     "argList":"`--receptor receptor.pdbqt --ligand ligand.pdbqt --energy_range ${energy_range} --center_x ${receptorX} --center_y ${receptorY} --center_z ${receptorZ} --size_x ${sizeX} --size_y ${sizeY} --size_z ${sizeZ} --out output`",
+    #     "center_x": "-70.76",
+    #     "center_y": "21.82",
+    #     "center_z": "28.33",
+    #     "size_x": "25.0",
+    #     "size_y": "16.0",
+    #     "size_z": "25.0",
+    #     "docking_exhaustiveness": "1",
     #     "inputFile":[
     #         {
     #             "name":"`receptor.pdbqt`",
@@ -156,12 +162,12 @@ def dock():
     # add opts from sample_submit_autogrow.json to vars, like mgltools_directory etc.
     # some of these will come from json.get("argList")
     vars["mgltools_directory"] = "/mgltools_x86_64Linux2_1.5.6/"
-    vars["center_x"] = float(args[args.index("--center_x") + 1])
-    vars["center_y"] = float(args[args.index("--center_y") + 1])
-    vars["center_z"] = float(args[args.index("--center_z") + 1])
-    vars["size_x"] = float(args[args.index("--size_x") + 1])
-    vars["size_y"] = float(args[args.index("--size_y") + 1])
-    vars["size_z"] = float(args[args.index("--size_z") + 1])
+    vars["center_x"] = float(json.get("center_x"))
+    vars["center_y"] = float(json.get("center_y"))
+    vars["center_z"] = float(json.get("center_z"))
+    vars["size_x"] = float(json.get("size_x"))
+    vars["size_y"] = float(json.get("size_y"))
+    vars["size_z"] = float(json.get("size_z"))
     vars["num_generations"] = 0
     vars["output_directory"] = CWD + temp_folder
     vars["root_output_folder"] = CWD + temp_folder
@@ -169,7 +175,7 @@ def dock():
             CWD + "/" + receptor_temp_file_name[:-2]
     )  # Cut off qt part
     vars["source_compound_file"] = CWD + "/" + ligand_temp_file_name
-    # vars["docking_exhaustiveness"] = 1
+    vars["docking_exhaustiveness"] = int(json.get("docking_exhaustiveness"))
     vars["number_of_processors"] = -1
     vars["docking_num_modes"] = 1
 
