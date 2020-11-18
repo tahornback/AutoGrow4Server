@@ -155,7 +155,6 @@ def dock():
     receptor_temp_file.close()
     ligand_temp_file.close()
 
-    args = json.get("argList").split(" ")
     vars = user_vars.define_defaults()
     vars = user_vars.multiprocess_handling(vars)
 
@@ -176,7 +175,7 @@ def dock():
     )  # Cut off qt part
     vars["source_compound_file"] = CWD + "/" + ligand_temp_file_name
     vars["docking_exhaustiveness"] = int(json.get("docking_exhaustiveness"))
-    vars["number_of_processors"] = -1
+    vars["number_of_processors"] = int(json.get("number_of_processors"))
     vars["docking_num_modes"] = 1
 
     current_generation_dir = (
