@@ -145,18 +145,24 @@ def dock():
     #     ]
     # }
 
-    # vars setup for autogrow methods
-    vars = user_vars.define_defaults()
-    vars = user_vars.multiprocess_handling(vars)
-    current_generation_dir = (
-            vars["output_directory"] + "/" + "generation_{}{}".format(0, os.sep)
-    )
-
     # File/directory setup
     CWD = os.getcwd()
     suffix = "".join(random.choice(string.ascii_letters) for i in range(8))
     temp_folder = "/Output_{}".format(suffix)
     os.mkdir(CWD + "/" + temp_folder)
+
+    # vars setup for autogrow methods
+    vars = user_vars.define_defaults()
+    vars = user_vars.multiprocess_handling(vars)
+    vars["output_directory"] = CWD + temp_folder
+    vars["root_output_folder"] = CWD + temp_folder
+    current_generation_dir = (
+            vars["output_directory"] + "/" + "generation_{}{}".format(0, os.sep)
+    )
+    vars["num_generations"] = 0
+    vars["number_of_processors"] = -1
+    vars["docking_num_modes"] = 1
+
     os.mkdir(current_generation_dir)
     os.mkdir(current_generation_dir + "PDBs/")
 
@@ -190,16 +196,11 @@ def dock():
     vars["size_x"] = float(json.get("size_x"))
     vars["size_y"] = float(json.get("size_y"))
     vars["size_z"] = float(json.get("size_z"))
-    vars["num_generations"] = 0
-    vars["output_directory"] = CWD + temp_folder
-    vars["root_output_folder"] = CWD + temp_folder
+    vars["docking_exhaustiveness"] = int(json.get("docking_exhaustiveness"))
     vars["filename_of_receptor"] = (
             CWD + "/" + receptor_temp_file_name[:-2]
     )  # Cut off qt part, comparison later will check for `filename`+"qt" so we need to cut off the end
     vars["source_compound_file"] = CWD + "/" + ligand_temp_file_name
-    vars["docking_exhaustiveness"] = int(json.get("docking_exhaustiveness"))
-    vars["number_of_processors"] = -1
-    vars["docking_num_modes"] = 1
 
     execute_docking.run_docking_common(vars, 0, current_generation_dir, None)
 
