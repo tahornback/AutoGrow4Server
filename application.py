@@ -180,8 +180,9 @@ def dock():
     receptor_temp_file.close()
 
     ligand_temp_file_name = "ligand_{}".format(suffix + ".pdbqt")
+    ligand_temp_file_path = current_generation_dir + "PDBs/" + ligand_temp_file_name
     ligand_temp_file = open(
-        current_generation_dir + "PDBs/" + ligand_temp_file_name, "w"
+        ligand_temp_file_path, "w"
     )
     ligand_file_data = base64.b64decode(encodedLigand).decode("utf-8")
     ligand_temp_file.write(ligand_file_data)
@@ -223,7 +224,7 @@ def dock():
 
     # Clean up files
     shutil.rmtree(vars["output_directory"])
-    os.remove(CWD + "/" + ligand_temp_file_name)
+    os.remove(ligand_temp_file_path)
     os.remove(CWD + "/" + receptor_temp_file_name)
 
     return file_contents
