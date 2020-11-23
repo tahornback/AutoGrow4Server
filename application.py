@@ -175,7 +175,7 @@ def dock():
     )  # Cut off qt part
     vars["source_compound_file"] = CWD + "/" + ligand_temp_file_name
     vars["docking_exhaustiveness"] = int(json.get("docking_exhaustiveness"))
-    vars["number_of_processors"] = int(json.get("number_of_processors"))
+    vars["number_of_processors"] = -1
     vars["docking_num_modes"] = 1
 
     current_generation_dir = (
