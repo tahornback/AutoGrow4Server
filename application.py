@@ -51,12 +51,19 @@ def updateProperties():
     #     heavyAtoms: { INTEGER },
     #     complexity: { DECIMAL }
     # }
+
+    # Set up some folders in case they don't exist yet
     CWD = os.getcwd()
     if not os.path.exists(CWD + "/smiles_dir"):
         os.makedirs(CWD + "/smiles_dir")
     if not os.path.exists(CWD + "/smiles_dir/generation_0"):
         os.makedirs(CWD + "/smiles_dir/generation_0")
+
+    # Grab JSON from request
     json = request.get_json()
+
+    # Get the 2dsdf from the request, save it, and turn it into an rdkit mol
+    # referred_mol_name is just to make sure that multiple requests do not conflict with each other
     mol2d = json.get("mol")
     referred_mol_name = "".join(random.choice(string.ascii_letters) for i in range(8))
     temp_file_name = referred_mol_name + ".sdf"
@@ -67,6 +74,7 @@ def updateProperties():
     mol = supplier[0]
     smiles = Chem.MolToSmiles(mol)
 
+    # This will return the smile if sanitized correctly or some other stuff we don't care about if it fails
     sanitized_smiles = operations.test_source_smiles_convert_update_properties(smiles)
 
     if smiles != sanitized_smiles:
@@ -78,12 +86,15 @@ def updateProperties():
     vars = user_vars.define_defaults()
     vars = user_vars.multiprocess_handling(vars)
     vars["max_variants_per_compound"] = 1
+
+    # Set up for conversion to 3d and convert
     smiles_list = [(sanitized_smiles, referred_mol_name)]
     smiles_to_convert_file, new_gen_folder_path = operations.save_generation_smi(
         CWD + "/smiles_dir/", 0, smiles_list, None,
     )
     conversion_to_3d.convert_to_3d(vars, smiles_to_convert_file, new_gen_folder_path)
 
+    # the rdkit 2dsdf of the mol, for consistent drawing of molecule
     rdkit_mol_sdf = Chem.MolToMolBlock(mol)
 
     # return output
@@ -133,6 +144,8 @@ def dock():
     #         }
     #     ]
     # }
+
+    # File/directory setup
     CWD = os.getcwd()
     suffix = "".join(random.choice(string.ascii_letters) for i in range(8))
     temp_folder = "/Output_{}".format(suffix)
@@ -142,6 +155,7 @@ def dock():
     ligand_temp_file_name = "ligand_{}".format(suffix + ".pdbqt")
     ligand_temp_file = open(ligand_temp_file_name, "w")
 
+    # chunk out json stuff
     json = request.get_json()
     inputFile = json.get("inputFile")
     encodedReceptor = inputFile[0].get("contents")
@@ -155,11 +169,12 @@ def dock():
     receptor_temp_file.close()
     ligand_temp_file.close()
 
+    # vars setup for autogrow methods
     vars = user_vars.define_defaults()
     vars = user_vars.multiprocess_handling(vars)
 
     # add opts from sample_submit_autogrow.json to vars, like mgltools_directory etc.
-    # some of these will come from json.get("argList")
+    # some of these will come from json
     vars["mgltools_directory"] = "/mgltools_x86_64Linux2_1.5.6/"
     vars["center_x"] = float(json.get("center_x"))
     vars["center_y"] = float(json.get("center_y"))
@@ -172,7 +187,7 @@ def dock():
     vars["root_output_folder"] = CWD + temp_folder
     vars["filename_of_receptor"] = (
             CWD + "/" + receptor_temp_file_name[:-2]
-    )  # Cut off qt part
+    )  # Cut off qt part, comparison later will check for `filename`+"qt" so we need to cut off the end
     vars["source_compound_file"] = CWD + "/" + ligand_temp_file_name
     vars["docking_exhaustiveness"] = int(json.get("docking_exhaustiveness"))
     vars["number_of_processors"] = -1
@@ -193,7 +208,7 @@ def dock():
 
     execute_docking.run_docking_common(vars, 0, current_generation_dir, None)
 
-    try:
+    try:  # If everything was successful in docking, .vina file will be returned
         file_contents = open(
             current_generation_dir
             + "PDBs/"
@@ -201,7 +216,7 @@ def dock():
             + ".vina",
             "r",
             ).read()
-    except:
+    except:  # If something failed during docking, the output file will be returned, hopefully with good feedback
         file_contents = open(
             current_generation_dir
             + "PDBs/"
@@ -209,9 +224,12 @@ def dock():
             + "_docking_output.txt",
             "r",
                 ).read()
+
+    # Clean up files
     shutil.rmtree(vars["output_directory"])
     os.remove(CWD + "/" + ligand_temp_file_name)
     os.remove(CWD + "/" + receptor_temp_file_name)
+
     return file_contents
 
 
