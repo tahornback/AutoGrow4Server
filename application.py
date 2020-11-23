@@ -145,15 +145,20 @@ def dock():
     #     ]
     # }
 
+    # vars setup for autogrow methods
+    vars = user_vars.define_defaults()
+    vars = user_vars.multiprocess_handling(vars)
+    current_generation_dir = (
+            vars["output_directory"] + "/" + "generation_{}{}".format(0, os.sep)
+    )
+
     # File/directory setup
     CWD = os.getcwd()
     suffix = "".join(random.choice(string.ascii_letters) for i in range(8))
     temp_folder = "/Output_{}".format(suffix)
     os.mkdir(CWD + "/" + temp_folder)
-    receptor_temp_file_name = "receptor_{}".format(suffix + ".pdbqt")
-    receptor_temp_file = open(receptor_temp_file_name, "w")
-    ligand_temp_file_name = "ligand_{}".format(suffix + ".pdbqt")
-    ligand_temp_file = open(ligand_temp_file_name, "w")
+    os.mkdir(current_generation_dir)
+    os.mkdir(current_generation_dir + "PDBs/")
 
     # chunk out json stuff
     json = request.get_json()
@@ -161,17 +166,20 @@ def dock():
     encodedReceptor = inputFile[0].get("contents")
     encodedLigand = inputFile[1].get("contents")
 
+    # Write out files
+    receptor_temp_file_name = "receptor_{}".format(suffix + ".pdbqt")
+    receptor_temp_file = open(receptor_temp_file_name, "w")
     receptor_file_data = base64.b64decode(encodedReceptor).decode("utf-8")
-    ligand_file_data = base64.b64decode(encodedLigand).decode("utf-8")
-
     receptor_temp_file.write(receptor_file_data)
-    ligand_temp_file.write(ligand_file_data)
     receptor_temp_file.close()
-    ligand_temp_file.close()
 
-    # vars setup for autogrow methods
-    vars = user_vars.define_defaults()
-    vars = user_vars.multiprocess_handling(vars)
+    ligand_temp_file_name = "ligand_{}".format(suffix + ".pdbqt")
+    ligand_temp_file = open(
+        current_generation_dir + "PDBs/" + ligand_temp_file_name, "w"
+    )
+    ligand_file_data = base64.b64decode(encodedLigand).decode("utf-8")
+    ligand_temp_file.write(ligand_file_data)
+    ligand_temp_file.close()
 
     # add opts from sample_submit_autogrow.json to vars, like mgltools_directory etc.
     # some of these will come from json
@@ -192,19 +200,6 @@ def dock():
     vars["docking_exhaustiveness"] = int(json.get("docking_exhaustiveness"))
     vars["number_of_processors"] = -1
     vars["docking_num_modes"] = 1
-
-    current_generation_dir = (
-        vars["output_directory"] + "/" + "generation_{}{}".format(0, os.sep)
-    )
-    os.mkdir(current_generation_dir)
-    os.mkdir(current_generation_dir + "PDBs/")
-    ligand_temp_file_name = "ligand_{}".format(suffix + ".pdbqt")
-    ligand_temp_file = open(
-        current_generation_dir + "PDBs/" + ligand_temp_file_name, "w"
-    )
-    ligand_file_data = base64.b64decode(encodedLigand).decode("utf-8")
-    ligand_temp_file.write(ligand_file_data)
-    ligand_temp_file.close()
 
     execute_docking.run_docking_common(vars, 0, current_generation_dir, None)
 
