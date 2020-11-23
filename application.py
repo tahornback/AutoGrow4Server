@@ -224,7 +224,6 @@ def dock():
 
     # Clean up files
     shutil.rmtree(vars["output_directory"])
-    os.remove(ligand_temp_file_path)
     os.remove(CWD + "/" + receptor_temp_file_name)
 
     return file_contents
